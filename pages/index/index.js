@@ -55,8 +55,9 @@ Page({
       case 131:
         r.keyName = '收款';
         let money = r.amount;//金额元
-        //跳转paymentOptions页面
-        this.navigateTopaymentOptions(money);
+        //金额判断
+        this.moneyIf(money);
+
         //唤醒收银台进行支付操作
         //this.startApp(money);
         break;
@@ -75,11 +76,49 @@ Page({
     }
     console.log('KeyEvent', r);
   },
+  //money判断
+  moneyIf(money) {
+    if (money == 0) {
+      my.ix.speech({
+        text: '金额为零',
+        speak: true,
+        success: (r) => {
+          return;
+        }
+      });
+    }
+    else if (money >= 50000) {
+      console.log("金额过大");
+      my.ix.speech({
+        text: '金额过大',
+        speak: true,
+        success: (r) => {
+          return;
+        }
+      });
+    } else {
+      let moneyStr = money+"";
+      if (moneyStr.length - moneyStr.indexOf(".") > 3) {
+        my.ix.speech({
+          text: '金额不合法',
+          speak: true,
+          success: (r) => {
+            return;
+          }
+        });
+      }else{
+        //跳转paymentOptions页面
+    this.navigateTopaymentOptions(money);
+      }
+    }
+    
+  },
   //唤醒收银台
-  
+
   //跳转到选择支付界面
-  navigateTopaymentOptions(money){
-    my.navigateTo({url:'../paymentOptions/paymentOptions?money='+money});
+  navigateTopaymentOptions(money) {
+
+    my.navigateTo({ url: '../paymentOptions/paymentOptions?money=' + money });
   },
   navigateToSetting() {
     my.navigateTo({ url: '../setting/setting' })
