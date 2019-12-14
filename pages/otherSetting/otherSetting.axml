@@ -1,0 +1,71 @@
+<view class="page">
+  <scroll-view style="height: 100vh;" scroll-y onScrollToLower="onScrollToLower">
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" align="{{item.align}}" index="items-{{index}}" onClick="onItemClick" key="items-{{index}}" last="{{index === (items.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items1}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" onClick="onItemClick" index="items1-{{index}}" key="items1-{{index}}" last="{{index === (items2.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view a:if="{{item.extra}}" slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items2}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" align="{{item.align}}" index="items2-{{index}}" onClick="onItemClick" key="items2-{{index}}" last="{{index === (items.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items3}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" align="{{item.align}}" index="items3-{{index}}" onClick="onItemClick" key="items3-{{index}}" last="{{index === (items.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items4}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" align="{{item.align}}" index="items4-{{index}}" onClick="onItemClick" key="items4-{{index}}" last="{{index === (items.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+      <view slot="footer">
+      </view>
+    </list>
+  </scroll-view>
+</view>

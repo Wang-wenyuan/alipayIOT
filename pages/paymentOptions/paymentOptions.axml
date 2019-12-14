@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="body">
+    <view class="bodyName">
+      <span>付款金额</span>
+    </view>
+    <view class="bodyMoney">
+      <span>￥{{money}}</span>
+    </view>
+  </view>
+  <view class="footer">
+    <button class="facePay" type="primary" onTap="facePayClick">刷脸扫码支付</button>
+    <button class="faceCash" type="primary" onTap="faceCashClick">刷脸付押金</button>
+  </view>
+</view>

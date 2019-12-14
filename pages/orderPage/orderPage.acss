@@ -1,0 +1,78 @@
+
+.page{
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+.body{
+  width: 100%;
+  height: 55vh;
+  background-color: white;
+  overflow:scroll;
+}
+.tabs{
+  width: 100%;
+  height: 40vh;
+}
+.main{
+  width:100%;
+  height:25vh;
+  border-radius:8px;
+  border:1px solid #4e8de0;
+  background-color: #4e8de0;
+}
+.tab-content {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40rpx;
+  /* 如果 swipeable="{{true}}"，需要增加 height */
+  /* height: 350px; */
+  font-size: 16px;
+}
+.tableOne{
+  width: 95%;
+  height: 5vh;
+  color: white;
+  padding: 10px;
+}
+.tableOne_one{
+  width: 50%;
+  height: 5vh;
+  
+  float: left;
+}
+.tableOne_two{
+  width: 35%;
+  float: right;
+}
+.tableTwo{
+  width: 95%;
+  height: 10vh;
+  color: white;
+  padding: 0px 10px 10px 10px;
+}
+.tableTwoOne{
+  width: 40%;
+  height: 15vh;
+  float: left;
+}
+.tableTwoTwo{
+  width: 35%;
+  height: 15vh;
+  float: right;
+}
+.tableThree{
+  width: 95%;
+  color: white;
+  font-size: 15px;
+  padding-top: 5px;
+  align-content: unset
+}
+.payOption{
+  width: 100%;
+  height: 20px;
+  background-color: white;
+  padding: 2px 20px;
+}

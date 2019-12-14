@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/setting/setting",
+    "pages/orderPage/orderPage",
+    "pages/paymentOptions/paymentOptions",
+    "pages/public/loading/loading",
+    "pages/public/error/error",
+    "pages/otherSetting/otherSetting",
+    "pages/public/QRCode/QRCode",
+    "pages/orderDetails/orderDetails"
+  ],
+  "window": {
+    "defaultTitle": "My App",
+    "transparentTitle": "always",
+    "enableScrollBar": "NO"
+  }
+}

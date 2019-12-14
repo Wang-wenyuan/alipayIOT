@@ -1,0 +1,8 @@
+page {
+  flex: 1;
+  display: flex;
+  background: #f7f7f7;
+   padding: 0vh;
+  margin: 0vh;
+  overflow:hidden;
+}

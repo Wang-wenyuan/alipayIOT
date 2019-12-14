@@ -1,0 +1,27 @@
+<view class="page" disable-scroll="{{true}}">
+  <!--电子海报-->
+  <block a:if="{{defautPoster}}">
+    <poster class="my_poster" id="my_poster_id" posid="{{posid}}" audible="{{audible}}" style="width:100%; height:80vh;" onSuccess="onDisplaySuccess" onFail="onDisplayFail" onChange="onPosterChange"/>
+    <view style="height:20vh">
+      <image class="buttonImage" onTap="onTap" src="{{buttonImage}}" onError="imageError" onLoad="imageLoad" />
+    </view>
+  </block>
+  <block a:if="{{poster}}">
+  <!--上部分-->
+    <view style="height:80vh"  >
+      <swiper a:if="{{show_default_poster}}" disable-scroll="{{true}}" style="width:100%;height:80vh" class="demo-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+        <block a:for="{{background}}">
+          <swiper-item key="swiper-item-{{index}}">
+            <view class="swiper-item">
+              <image class="image" onTap="onTap" src="{{item}}" onError="imageError" onLoad="imageLoad" />
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--脚部-->
+    <view style="height:20.1vh">
+      <image class="buttonImage" onTap="onTap" src="{{buttonImage}}" onError="imageError" onLoad="imageLoad" />
+    </view>
+  </block>
+</view>

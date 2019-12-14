@@ -1,0 +1,18 @@
+<view class="page">
+  <!--上半部分-->
+  <view class="header">
+    <image style="width:100%;height:40vh" src="/image/timg.jpg" />
+  </view>
+  <!--body部分-->
+  <view class="body">
+    <view style="" />
+    <grid  onGridItemClick="onItemClick" touchStart="touchStart"  columnNum="{{3}}" list="{{list}}" hasLine="{{false}}" />
+    <view>
+      
+    </view>
+  </view>
+  <!--脚部-->
+  <view class="footer">
+    <image style="width:100%;height:10.1vh" src="/image/timg.jpg" />
+  </view>
+</view>
