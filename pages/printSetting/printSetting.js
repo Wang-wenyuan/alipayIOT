@@ -53,8 +53,7 @@ Page({
       { name: '3', value: ' 3s' },
     ],
     itemsReceipt:[
-      { name: '0', value: '用户自主选择' },
-      { name: '1', value: '刷脸' },
+      { name: '1', value: '条形码' },
       { name: '2', value: '二维码' }
     ],
     printId: "",

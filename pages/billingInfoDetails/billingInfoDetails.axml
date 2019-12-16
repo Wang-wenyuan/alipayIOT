@@ -1,0 +1,84 @@
+<view class="page">
+  <view style="width:100%;height:20px;font-size:20px;text-align: center">
+  结算详情
+  </view>
+  <view class="header">
+    收款终端
+  </view>
+  <view class="title">
+    北京邦华信诺电子科技有限公司
+  </view>
+  <view class="timeList">
+    <view style="width:100%;  height:10px;margin-bottom:20px;">
+      <view style="width:50%; text-align: left;float:left">
+      开始时间:
+      </view>
+      <view style="width:50%; height:10px;text-align: right;float:right">
+      {{startDate}}
+      </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      结束时间:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{endDate}}
+      </view>
+    </view>
+  </view>
+  <view class="moneyList1">
+    <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
+      <view style="width:50%;text-align: left;float:left">
+      支付宝:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      实收小计: {{officialCount}}
+      </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      收款:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{successNum}}
+      </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      退款:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{breakNum}}
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="moneyList">
+      <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
+        <view style="width:50%;text-align: left;float:left">
+      订单总金额:{{totalMoney}}
+        </view>
+        <view style="width:50%;text-align: right;float:right">
+      实收总计: {{officialCount}}
+        </view>
+      </view>
+      <view style="width:100%; height:10px;margin-bottom:20px;">
+        <view style="width:50%;text-align: left;float:left">
+      成功笔数:
+        </view>
+        <view style="width:50%;text-align: right;float:right">
+      {{successNum}}
+        </view>
+      </view>
+      <view style="width:100%; height:10px;margin-bottom:20px;">
+        <view style="width:50%;text-align: left;float:left">
+      退款总计:
+        </view>
+        <view style="width:50%;text-align: right;float:right">
+      {{breakNum}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <button type="primary" style="width:80%;margin:10px auto 0px auto;" onTap="queryButton">打印</button>
+</view>

@@ -1,0 +1,10 @@
+{
+  "defaultTitle": "结算信息",
+  "pullRefresh": false,
+  "allowsBounceVertical": "NO",
+  "transparentTitle": "none",
+  "usingComponents":{
+     "list": "mini-antui/es/list/index",
+    "list-item": "mini-antui/es/list/list-item/index"
+  }
+}

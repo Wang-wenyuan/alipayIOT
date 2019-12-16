@@ -80,7 +80,7 @@
   </scroll-view>
   <button type="primary" onTap="printLin">确定</button>
   <!--自定义抬头弹出框-->
-  <modal show="{{modalOpened2}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
+  <modal show="{{modalOpened1}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
     <textarea focus="{{focus}}" onFocus="onFocus" onBlur="onBlur1" placeholder="请输入" />
     <view slot="footer" onTap="sureButton">确定</view>
   </modal>

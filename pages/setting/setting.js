@@ -57,8 +57,15 @@ Page({
     this.data.index = ev.detail.index;
     switch (ev.detail.index) {
       case 0:
+      my.navigateTo({
+        url: '../billingInfo/billingInfo'
+      });
         break;
       case 2:
+      //汇总查询
+      my.navigateTo({
+        url: '../groupQuery/groupQuery'
+      });
         break;
       case 3:
       //进入订单流水

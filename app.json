@@ -11,7 +11,11 @@
     "pages/orderDetails/orderDetails",
     "pages/successionAndSettlement/successionAndSettlement",
     "pages/handLosingAmount/handLosingAmount",
-    "pages/printSetting/printSetting"
+    "pages/printSetting/printSetting",
+    "pages/groupQuery/groupQuery",
+    "pages/groupQueryDetails/groupQueryDetails",
+    "pages/billingInfo/billingInfo",
+    "pages/billingInfoDetails/billingInfoDetails"
   ],
   "window": {
     "defaultTitle": "My App",

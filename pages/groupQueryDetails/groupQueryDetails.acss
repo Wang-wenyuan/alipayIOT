@@ -1,0 +1,43 @@
+.page{
+  width: 100%;
+  background-color: white;
+}
+.header{
+  text-align: center;
+  font-size: 10px;
+  line-height: 20px;
+  width: 80%;
+  height: 20px;
+  margin: 10px auto 10px auto;
+  background-color: white;
+  
+}
+.title{
+  text-align: center;
+  font-size: 20px;
+  line-height: 20px;
+  width: 80%;
+  height: 20px;
+  margin: 0 auto;
+  background-color: white;
+}
+.timeList{
+  font-size: 15px;
+  height: 60px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-bottom: 1px solid #D0D0D0;
+}
+.border{
+  width: 80%;
+  border-bottom: 1px solid black;
+  margin: 0 auto;
+}
+.moneyList{
+  font-size: 15px;
+  height: 100px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
