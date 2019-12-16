@@ -8,7 +8,10 @@
     "pages/public/error/error",
     "pages/otherSetting/otherSetting",
     "pages/public/QRCode/QRCode",
-    "pages/orderDetails/orderDetails"
+    "pages/orderDetails/orderDetails",
+    "pages/successionAndSettlement/successionAndSettlement",
+    "pages/handLosingAmount/handLosingAmount",
+    "pages/printSetting/printSetting"
   ],
   "window": {
     "defaultTitle": "My App",

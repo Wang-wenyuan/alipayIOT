@@ -1,0 +1,37 @@
+<view class="page">
+  <view style="margin-top: 60px;" />
+  <view class="price">
+    <view class="priceName">
+      请输入付款金额
+    </view>
+    <view class="priceTable">
+      <view class="priceText">
+        ￥
+      </view>
+      <view class="priceNum">
+        {{money}}
+      </view>
+    </view>
+    
+  </view>
+  <view class="keyboard">
+    <span a:for="{{9}}">
+      <view class="keyButton" onTap="numClick" id="{{index}}">
+      {{index+1}}
+      </view>
+    </span>
+    <view class="keyButton" onTap="numClick" id="floatButton">
+      .
+    </view>
+    <view class="keyButton" onTap="numClick" id="zeroButton">
+      0
+    </view>
+    <view class="keyButton" onTap="numClick" id="breakButton">
+      <image style="width:30px;height:30px;margin-top:10px" id="breakButton" mode="scaleToFill" src="/image/backTable.png"/>
+    </view>
+  </view>
+  <view class="button">
+    <button type="primary" onTap="">确定</button>
+  </view>
+  
+</view>

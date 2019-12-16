@@ -1,0 +1,116 @@
+<view class="page">
+  <scroll-view style="height: 100vh;" scroll-y onScrollToLower="onScrollToLower">
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" align="{{item.align}}" index="0" onClick="onItemClick" key="items-{{index}}" last="{{index === (items.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view slot="extra">
+            <view class="switch-item">
+              <switch checked onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : 'switch closed'}}" />
+            </view>
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <block a:for="{{items1}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" onClick="onItemClick" index="1" key="items1-{{index}}" last="{{index === (items2.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view a:if="{{item.extra}}" slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items2}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" align="{{item.align}}" index="2" onClick="onItemClick" key="items-{{index}}" last="{{index === (items.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view slot="extra">
+            <view class="switch-item">
+              <switch checked onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : 'switch closed'}}" />
+            </view>
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <block a:for="{{items3}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" onClick="onItemClick" index="3" key="items1-{{index}}" last="{{index === (items2.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view a:if="{{item.extra}}" slot="extra">
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items4}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" onClick="onItemClick" index="items4-{{index}}" key="items1-{{index}}" last="{{index === (items2.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view a:if="{{item.extra}}" slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items5}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" onClick="onItemClick" index="5" key="items1-{{index}}" last="{{index === (items2.length - 1)}}">
+					{{item.title}}
+          <view class="am-list-brief">{{item.brief}}</view>
+          <view a:if="{{item.extra}}" slot="extra">
+						{{item.extra}}
+          </view>
+        </list-item>
+      </block>
+    </list>
+  </scroll-view>
+  <button type="primary" onTap="printLin">确定</button>
+  <!--自定义抬头弹出框-->
+  <modal show="{{modalOpened2}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
+    <textarea focus="{{focus}}" onFocus="onFocus" onBlur="onBlur1" placeholder="请输入" />
+    <view slot="footer" onTap="sureButton">确定</view>
+  </modal>
+  <modal show="{{modalOpened2}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
+    <textarea focus="{{focus}}" onFocus="onFocus" onBlur="onBlur2" placeholder="请输入" />
+    <view slot="footer" onTap="sureButton">确定</view>
+  </modal>
+  <!--打印时间间隔-->
+  <modal show="{{modalOpened3}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
+  <view style="width:100%;text-align:left">
+    <radio-group class="radio-group" style="padding:5px;" onChange="radioChange" name="lib">
+      <label class="radio" a:for="{{itemsRadio}}" key="label-{{index}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+        <text class="radio-text">{{item.value}}</text>
+      </label>
+    </radio-group>
+    </view>
+    <view slot="footer" onTap="sureButton">确定</view>
+  </modal>
+  <!--小票订单号打印-->
+  <modal show="{{modalOpened4}}" onModalClick="onModalClick2" className="changeClass1" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
+  <view style="width:100%;text-align:left">
+    <radio-group class="radio-group" style="padding:5px;" onChange="radioChange1" name="lib">
+      <label class="radio" a:for="{{itemsReceipt}}" key="label-{{index}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+        <text class="radio-text">{{item.value}}</text>
+      </label>
+    </radio-group>
+  </view>
+    
+    <view slot="footer" onTap="sureButton">确定</view>
+  </modal>
+</view>

@@ -79,13 +79,16 @@ Page({
   //money判断
   moneyIf(money) {
     if (money == 0) {
-      my.ix.speech({
-        text: '金额为零',
-        speak: true,
-        success: (r) => {
-          return;
-        }
-      });
+      // my.ix.speech({
+      //   text: '金额为零',
+      //   speak: true,
+      //   success: (r) => {
+         
+      //   }
+      // });
+       my.navigateTo({
+            url:"../handLosingAmount/handLosingAmount"
+          });
     }
     else if (money >= 50000) {
       console.log("金额过大");

@@ -1,3 +1,4 @@
+import { Page } from '/util/ix';
 Page({
   data: {
     items: [
@@ -190,6 +191,10 @@ Page({
             this.setData({
               "printerId": r.id
             })
+            //跳转页面
+            my.navigateTo({
+              url:"../printSetting/printSetting"
+            });
           },
           fail: (r) => {
             this.setData({
@@ -212,5 +217,25 @@ Page({
         console.log("fail, errorCode:" + r.error);
       }
     });
-  }
+  },
+  onKeyPress(r) {
+    console.log("键盘回调函数");
+    switch (r.keyCode) {
+      case 131:
+        r.keyName = '收款';
+        break;
+      case 132:
+        r.keyName = '刷脸';
+        break;
+      case 133:
+        r.keyName = '取消';
+        //返回上一级
+        my.navigateBack();
+        break;
+      case 134:
+        r.keyName = '设置';
+        break;
+    }
+    console.log('KeyEvent', r);
+  },
 });

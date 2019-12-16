@@ -1,0 +1,11 @@
+{
+  "defaultTitle": "打印设置",
+  "pullRefresh": false,
+  "allowsBounceVertical": "NO",
+  "transparentTitle": "none",
+  "usingComponents":{
+    "list": "mini-antui/es/list/index",
+    "list-item": "mini-antui/es/list/list-item/index",
+    "modal": "mini-antui/es/modal/index"
+  }
+}

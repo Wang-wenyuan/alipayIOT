@@ -1,0 +1,9 @@
+{
+  "defaultTitle": "手输金额",
+  "pullRefresh": false,
+  "allowsBounceVertical": "NO",
+  "transparentTitle": "none",
+  "usingComponents":{
+    "grid": "mini-antui/es/grid/index"
+  }
+}
