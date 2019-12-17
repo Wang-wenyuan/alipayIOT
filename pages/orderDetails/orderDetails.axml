@@ -5,7 +5,7 @@
   <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
     +{{money}}
   </view>
-  <view style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
+  <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
     <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
   </view>
   <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
