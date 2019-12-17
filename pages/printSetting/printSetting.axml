@@ -110,5 +110,6 @@
       </label>
     </radio-group>
   </view>
+  <view slot="footer" onTap="sureButton">确定</view>
   </modal>
 </view>

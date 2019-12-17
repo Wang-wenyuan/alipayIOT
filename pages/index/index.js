@@ -162,6 +162,7 @@ Page({
     //this.queryImg();
     // 页面加载
     console.log("请求url:",sysConfig.apiUrl);
+    //https://localhost:2602/agent/agentSelect.do
     bnApi.requestGet(sysConfig.apiUrl+"/agent/agentSelect.do").then((res)=>{
       console.log("网络请求发起结果",res);
     }).catch((err)=>{

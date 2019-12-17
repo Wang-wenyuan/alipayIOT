@@ -5,9 +5,6 @@ export default {
         url: url,
         method: 'GET',
         dataType: 'json',
-        headers: {
-          'content-type': 'application/json'
-        },
         success: function (res) {
           resolve(res)
         },

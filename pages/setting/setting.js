@@ -27,6 +27,7 @@ Page({
         text: '设置',
       }
     ],
+    modalOpened:false
   },
   onLoad() { },
   //回调函数
@@ -57,8 +58,9 @@ Page({
     this.data.index = ev.detail.index;
     switch (ev.detail.index) {
       case 0:
-      my.navigateTo({
-        url: '../billingInfo/billingInfo'
+      this.data.modalOpened = true;
+      this.setData({
+        "modalOpened":true
       });
         break;
       case 2:
@@ -81,5 +83,28 @@ Page({
         break;
     }
   },
+  //开始交班
+  startJiaoBan(){
+     this.setData({
+        "modalOpened":false
+      });
+    my.navigateTo({
+      url:"../successionAndSettlement/successionAndSettlement"
+    });
+  },
+  //查看记录
+  lookJieSuan(){
+     this.setData({
+        "modalOpened":false
+      });
+    my.navigateTo({
+      url:"../billingInfo/billingInfo"
+    });
+  },
+  onModalClick21(){
+    this.setData({
+        "modalOpened":false
+      });
+  }
 
 });

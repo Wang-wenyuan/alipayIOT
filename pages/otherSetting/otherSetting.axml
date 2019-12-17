@@ -68,4 +68,28 @@
       </view>
     </list>
   </scroll-view>
+  <!--收款模式-->
+  <modal show="{{modalOpened}}" onModalClick="onModalClick" className="changeClass1" onModalClose="onModalClose" topImageSize="lg" closeType="1">
+  <view style="width:100%;text-align:left">
+    <radio-group class="radio-group" style="padding:5px;" onChange="radioChange1" name="lib">
+      <label class="radio" a:for="{{itemsGathering}}" key="label-{{index}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+        <text class="radio-text">{{item.value}}</text>
+      </label>
+    </radio-group>
+  </view>
+  <view slot="footer" onTap="sureButton">确定</view>
+  </modal>
+  <!--支付方式-->
+  <modal show="{{modalOpened1}}" onModalClick="onModalClick" className="changeClass1" onModalClose="onModalClose" topImageSize="lg" closeType="1">
+  <view style="width:100%;text-align:left">
+    <radio-group class="radio-group" style="padding:5px;" onChange="radioChange1" name="lib">
+      <label class="radio" a:for="{{itemsPay}}" key="label-{{index}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+        <text class="radio-text">{{item.value}}</text>
+      </label>
+    </radio-group>
+  </view>
+  <view slot="footer" onTap="sureButton">确定</view>
+  </modal>
 </view>

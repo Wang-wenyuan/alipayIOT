@@ -15,4 +15,14 @@
   <view class="footer">
     <image style="width:100%;height:10.1vh" src="/image/timg.jpg" />
   </view>
+  <modal
+		show="{{modalOpened}}"
+		onModalClick="onModalClick21"
+		onModalClose="onModalClose21"
+    showClose="{{false}}"
+	>
+		<button size="default" type="primary" style="margin:20px 0" onTap="startJiaoBan">开始交班结算</button>
+    <button size="default" type="primary" onTap="lookJieSuan">查看结算记录</button>
+		<view slot="footer">取消</view>
+	</modal>
 </view>

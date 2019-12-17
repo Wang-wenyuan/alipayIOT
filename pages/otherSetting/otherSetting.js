@@ -53,8 +53,21 @@ Page({
         extra: 'xxxxx',
       }
     ],
+    itemsGathering:[
+      { name: '0', value: '一体化小键盘' },
+      { name: '1', value: '固定金额模式' },
+      { name: '2', value: '手输金额模式' },
+      { name: '3', value: '收银机模式' },
+      { name: '4', value: '即插即用模式' },
+    ],
+    itemsPay:[
+      { name: '0', value: '刷脸支付' },
+      { name: '1', value: '扫码支付' },
+    ],
     snValue: "",//sn版本号
-    printerId: ""
+    printerId: "",
+    modalOpened: false,
+    modalOpened1:false
   },
   onLoad() {
     //版本号栏目
@@ -86,6 +99,11 @@ Page({
         });
         break;
       case "items1-0":
+      console.log("进入收款模式选择");
+      //收款模式
+        this.setData({
+          "modalOpened": true
+        });
         break;
       case "items1-1":
         break;
@@ -216,6 +234,16 @@ Page({
       fail: (r) => {
         console.log("fail, errorCode:" + r.error);
       }
+    });
+  },
+  //确定按钮
+  sureButton(){
+    console.log("确定按钮点击");
+    this.data.modalOpened = false;
+    this.data.modalOpened1 = false;
+    this.setData({
+      "modalOpened":false,
+      "modalOpened1":false
     });
   },
   onKeyPress(r) {

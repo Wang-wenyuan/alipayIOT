@@ -1,1 +1,10 @@
-{}
+{
+  "defaultTitle": "交班结算",
+  "pullRefresh": false,
+  "allowsBounceVertical": "NO",
+  "transparentTitle": "none",
+  "usingComponents":{
+     "list": "mini-antui/es/list/index",
+    "list-item": "mini-antui/es/list/list-item/index"
+  }
+}

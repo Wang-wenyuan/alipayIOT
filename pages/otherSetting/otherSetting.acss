@@ -1,3 +1,16 @@
 .page{
   width:100%;
 }
+.radio {
+  display: block;
+  margin-bottom: 20rpx;
+}
+.radio-text {
+  line-height: 1.8;
+}
+.changeClass1{
+  align-content: unset
+}
+.radio-group{
+  float: left;
+}

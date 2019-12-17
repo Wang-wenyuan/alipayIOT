@@ -15,7 +15,8 @@
     "pages/groupQuery/groupQuery",
     "pages/groupQueryDetails/groupQueryDetails",
     "pages/billingInfo/billingInfo",
-    "pages/billingInfoDetails/billingInfoDetails"
+    "pages/billingInfoDetails/billingInfoDetails",
+    "pages/closeAccount/closeAccount"
   ],
   "window": {
     "defaultTitle": "My App",
