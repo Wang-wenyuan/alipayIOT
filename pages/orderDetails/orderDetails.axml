@@ -1,5 +1,30 @@
 <view class="page">
-  <view class="">
-    订单详情
+  <view style="width:80%;margin:0 auto;font-size:15px;height:20px;text-align: center;">
+    北京邦华信诺电子科技有限公司
   </view>
+  <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
+    +{{money}}
+  </view>
+  <view style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
+    <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
+  </view>
+  <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
+    <view class="tr">
+      <view class="tbL">
+        消费金额
+      </view>
+      <view class="tbR">
+        {{waterMoney}}
+      </view>
+    </view>
+    <view class="tr">
+      <view class="tbL">
+        实收金额
+      </view>
+      <view class="tbR">
+        {{waterSMoney}}
+      </view>
+    </view>
+  </view>
+   <button style="width:70%;margin:0 auto;" type="warn">订单退款</button>
 </view>

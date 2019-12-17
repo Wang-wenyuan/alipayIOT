@@ -174,6 +174,28 @@ Page({
       }
     });
   },
+  handleInput(value) {
+    this.setData({
+      value,
+    });
+  },
+  handleClear(value) {
+    this.setData({
+      value: '',
+    });
+  },
+  handleFocus() {},
+  handleBlur() {},
+  handleCancel() {
+    this.setData({
+      value: '',
+    });
+  },
+  handleSubmit(value) {
+    my.alert({
+      content: value,
+    });
+  },
   //日期格式转换
   format(date,fmt) {
     var o = {

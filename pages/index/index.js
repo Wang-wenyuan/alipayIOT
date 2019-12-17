@@ -1,4 +1,6 @@
 import { Page } from '/util/ix';
+import bnApi from '/config/public';
+let sysConfig = require('/config/sysConfig')
 Page({
   // .js
   data: {
@@ -159,7 +161,12 @@ Page({
   onLoad(query) {
     //this.queryImg();
     // 页面加载
-    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+    console.log("请求url:",sysConfig.apiUrl);
+    bnApi.requestGet(sysConfig.apiUrl+"/agent/agentSelect.do").then((res)=>{
+      console.log("网络请求发起结果",res);
+    }).catch((err)=>{
+        console.log("嫡传错误信息",err);
+    });
   },
   onReady() {
     // 页面加载完成

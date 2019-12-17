@@ -126,6 +126,18 @@
       支付方式: {{payName}}
     <image mode="scaleToFill" style="width: 8px;height: 6px; margin-left:5px" src="/image/xiala.png"/>
   </view>
+  <view>
+  <search-bar
+    value="{{value}}"
+    placeholder="请输入订单号进行搜索"
+    onInput="handleInput"
+    onClear="handleClear"
+    onFocus="handleFocus"
+    onBlur="handleBlur"
+    onCancel="handleCancel"
+    onSubmit="handleSubmit"
+    showCancelButton="{{false}}" />
+</view>
   <view class="body">
     <list>
       <block a:for="{{itemsThumb}}">

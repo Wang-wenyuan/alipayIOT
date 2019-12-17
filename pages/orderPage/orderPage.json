@@ -3,13 +3,14 @@
   "pullRefresh": false,
   "allowsBounceVertical": "NO",
   "transparentTitle": "none",
-  "usingComponents":{
+  "usingComponents": {
     "list": "mini-antui/es/list/index",
     "list-item": "mini-antui/es/list/list-item/index",
-     "tabs": "mini-antui/es/tabs/index",
+    "tabs": "mini-antui/es/tabs/index",
     "tab-content": "mini-antui/es/tabs/tab-content/index",
     "am-icon": "mini-antui/es/am-icon/index",
     "collapse": "mini-antui/es/collapse/index",
-    "collapse-item": "mini-antui/es/collapse/collapse-item/index"
+    "collapse-item": "mini-antui/es/collapse/collapse-item/index",
+    "search-bar": "mini-antui/es/search-bar/index"
   }
 }
