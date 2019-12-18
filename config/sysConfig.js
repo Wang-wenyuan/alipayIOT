@@ -1,6 +1,6 @@
 
 var sysConfig = {
-  apiUrl:"https://localhost:2602",
+  apiUrl:"https://39.99.81.146:2602",
   openAuthenticate: true,
   openAuthorize: true
 }

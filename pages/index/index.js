@@ -85,12 +85,12 @@ Page({
       //   text: '金额为零',
       //   speak: true,
       //   success: (r) => {
-         
+
       //   }
       // });
-       my.navigateTo({
-            url:"../handLosingAmount/handLosingAmount"
-          });
+      my.navigateTo({
+        url: "../handLosingAmount/handLosingAmount"
+      });
     }
     else if (money >= 50000) {
       console.log("金额过大");
@@ -102,7 +102,7 @@ Page({
         }
       });
     } else {
-      let moneyStr = money+"";
+      let moneyStr = money + "";
       if (moneyStr.length - moneyStr.indexOf(".") > 3) {
         my.ix.speech({
           text: '金额不合法',
@@ -111,12 +111,12 @@ Page({
             return;
           }
         });
-      }else{
+      } else {
         //跳转paymentOptions页面
-    this.navigateTopaymentOptions(money);
+        this.navigateTopaymentOptions(money);
       }
     }
-    
+
   },
   //唤醒收银台
 
@@ -161,12 +161,12 @@ Page({
   onLoad(query) {
     //this.queryImg();
     // 页面加载
-    console.log("请求url:",sysConfig.apiUrl);
+    console.log("请求url:", sysConfig.apiUrl);
     //https://localhost:2602/agent/agentSelect.do
-    bnApi.requestGet(sysConfig.apiUrl+"/agent/agentSelect.do").then((res)=>{
-      console.log("网络请求发起结果",res);
-    }).catch((err)=>{
-        console.log("嫡传错误信息",err);
+    bnApi.requestGet(sysConfig.apiUrl + "/agent/agentSelect.do").then((res) => {
+      console.log("网络请求发起结果", res);
+    }).catch((err) => {
+      console.log("嫡传错误信息", err);
     });
   },
   onReady() {
