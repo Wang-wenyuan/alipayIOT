@@ -7,15 +7,15 @@ Page({
     console.log("paymentOptions页面参数", query);
     this.data.money = query.money;
     this.moneyConvert();
-    
+
   },
-  moneyConvert(){
-    let moneyStr = this.data.money+"";
-    if(moneyStr.indexOf(".")==-1){
-      this.data.money = moneyStr+".00";
-    }else{
-      if(moneyStr.length - moneyStr.indexOf(".")==2){
-        this.data.money = moneyStr+"0";
+  moneyConvert() {
+    let moneyStr = this.data.money + "";
+    if (moneyStr.indexOf(".") == -1) {
+      this.data.money = moneyStr + ".00";
+    } else {
+      if (moneyStr.length - moneyStr.indexOf(".") == 2) {
+        this.data.money = moneyStr + "0";
       }
     }
   },
@@ -59,21 +59,22 @@ Page({
    */
   faceCashClick() {
     console.log("刷脸付押金按钮点击,进入扫脸认证");
-    my.ix.faceVerify({
-      //certNo: 'XXX',
-      //certName: 'XXX',
-      //verifyType: 'idCard',
-      option: 'life',
+    this.startApp(this.data.money);
+    // my.ix.faceVerify({
+    //   //certNo: 'XXX',
+    //   //certName: 'XXX',
+    //   //verifyType: 'idCard',
+    //   option: 'life',
 
-      success: (r) => {
-        console.log("刷脸验身成功",r);
-        //进入等待页面
-        this.navigateToLoading();
-      },
-      fail: (r) => {
-        my.showToast({ content: JSON.stringify(r) });
-      }
-    });
+    //   success: (r) => {
+    //     console.log("刷脸验身成功",r);
+    //     //进入等待页面
+    //     this.navigateToLoading();
+    //   },
+    //   fail: (r) => {
+    //     my.showToast({ content: JSON.stringify(r) });
+    //   }
+    // });
   },
   //唤醒收银台
   startApp(money) {
@@ -86,6 +87,7 @@ Page({
     console.log("随机数拼接", random_no);
     let orderId = time + random_no;
     console.log("订单id", orderId);
+    console.log("money", money);
     my.ix.startApp({
       appName: 'cashier',
       bizNo: orderId,
@@ -96,6 +98,8 @@ Page({
         //my.showToast({ content: r.barCode });
         if (r.success) {
           console.log("收银台启动成功", r.barCode);
+          //开启监听收银台关闭
+          this.payClose();
           //调用支付接口
           //this.alipay(r.barCode);
           //获取支付结果
@@ -136,7 +140,7 @@ Page({
       }
     })
   },
-  //获取支付结果
+  //只有扫码成功才能调用获取支付结果
   payResult(bizNo, totalAmount, bizAmount, discount) {
     my.ix.startApp({
       appName: 'scanPayResult',
@@ -150,8 +154,32 @@ Page({
       }
     });
   },
+  //监听收银台关闭
+  payClose() {
+    my.ix.onCashierEventReceive((r) => {
+      if (r.bizType === 'RESULT_CLOSED') {
+        console.log("收银台关闭");
+        //跳转到首页
+        my.navigateTo({ url: '../index/index' });
+        my.ix.offCashierEventReceive();
+      } else if (r.bizType === 'RESULT_BTN_FUNCTION') {
+        console.log("收银台自定义按钮按下");
+        console.log("收银台关闭");
+        //跳转到首页
+        my.navigateTo({ url: '../index/index' });
+        my.ix.offCashierEventReceive();
+      } else {
+        console.log('RESULT: ', r.keyCode);
+        console.log("收银台关闭");
+        //跳转到首页
+        my.navigateTo({ url: '../index/index' });
+        my.ix.offCashierEventReceive();
+      }
+
+    });
+  },
   //跳转到loading页面
-  navigateToLoading(){
-    my.navigateTo({url:'../public/loading/loading'});
+  navigateToLoading() {
+    my.navigateTo({ url: '../public/loading/loading' });
   }
 });

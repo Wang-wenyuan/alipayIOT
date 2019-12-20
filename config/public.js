@@ -1,7 +1,7 @@
 export default {
   requestGet(url) {
     return new Promise((resolve, reject) => {
-      my.httpRequest({
+      my.request({
         url: url,
         method: 'GET',
         dataType: 'json',
