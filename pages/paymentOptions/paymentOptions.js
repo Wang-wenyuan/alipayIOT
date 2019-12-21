@@ -1,13 +1,24 @@
 import { Page } from '/util/ix';
+import bnApi from '/config/public';
+let sysConfig = require('/config/sysConfig')
 Page({
   data: {
-    money: 0
+    money: 0,
+    from:{
+      authCode:'',
+      buyerId:'',
+      codeType:'',
+      deviceSn:'',
+      sellerId:'',
+      subject:'商品订单',
+      totalAmount:'',
+      waterNote:''
+    }
   },
   onLoad(query) {
     console.log("paymentOptions页面参数", query);
     this.data.money = query.money;
     this.moneyConvert();
-
   },
   moneyConvert() {
     let moneyStr = this.data.money + "";
@@ -86,6 +97,7 @@ Page({
     }
     console.log("随机数拼接", random_no);
     let orderId = time + random_no;
+    this.data.orderId = orderId;
     console.log("订单id", orderId);
     console.log("money", money);
     my.ix.startApp({
@@ -93,17 +105,19 @@ Page({
       bizNo: orderId,
       totalAmount: money,
       showScanPayResult: true,
-      orderDetail: [{ name: '名称1', content: '详情134', fontColor: 'gray' }],
+      //orderDetail: [{ name: '名称1', content: '详情134', fontColor: 'gray' }],
       success: (r) => {
         //my.showToast({ content: r.barCode });
         if (r.success) {
           console.log("收银台启动成功", r.barCode);
+          this.data.from.authCode = r.barCode;
+          this.data.from.totalAmount = money;
+          this.data.from.codeType = r.codeType;
           //开启监听收银台关闭
           this.payClose();
           //调用支付接口
-          //this.alipay(r.barCode);
-          //获取支付结果
-          this.payResult(orderId, money, 1, 1);
+          this.alipay(r.barCode);
+          
 
           if (r.codeType == "F") {
             //刷脸
@@ -119,26 +133,16 @@ Page({
   //调用具体支付接口
   alipay(barCode) {
     console.log("具体支付接口调用");
-    my.httpRequest({
-      url: '',
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      data: {
-        barCode: "barCode",
-        auth_code: barCode,
-      },
-      header: {
-        "Content-Type": "json"
-      },
-      success: function (res) {
-        if (res.success) {
-          this.data.background = res.background;
-        }
-      },
-      fail: function (error) {
-        // fail
-        console.log(error)
+    bnApi.requestPost(sysConfig.apiUrl+"/api/pay",this.data.from).then((res)=>{
+      if(res.success){
+        console.log("支付成功");
+        //获取支付结果
+          this.payResult(this.data.orderId, this.data.money, 0, 0);
+      }else{
+        console.log("支付失败，但不一定失败，请查询支付宝账单");
       }
-    })
+    });
+    
   },
   //只有扫码成功才能调用获取支付结果
   payResult(bizNo, totalAmount, bizAmount, discount) {

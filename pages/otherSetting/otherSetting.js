@@ -1,6 +1,9 @@
 import { Page } from '/util/ix';
+import bnApi from '/config/public';
+let sysConfig = require('/config/sysConfig')
 Page({
   data: {
+    shoukuanSetting:{},
     items: [
       {
         thumb: '/image/timg.jpg',
@@ -54,11 +57,7 @@ Page({
       }
     ],
     itemsGathering:[
-      { name: '0', value: '一体化小键盘' },
-      { name: '1', value: '固定金额模式' },
-      { name: '2', value: '手输金额模式' },
-      { name: '3', value: '收银机模式' },
-      { name: '4', value: '即插即用模式' },
+     
     ],
     itemsPay:[
       { name: '0', value: '刷脸支付' },
@@ -73,6 +72,8 @@ Page({
     //版本号栏目
     this.versionShow();
     this.getSnValue();
+    //初始化设置
+    this.setSetting();
     
   },
   onShow() {
@@ -100,6 +101,19 @@ Page({
         break;
       case "items1-0":
       console.log("进入收款模式选择");
+      //调用数据字典
+      bnApi.requestGet(sysConfig.apiUrl+"/system/dictionary/findByType/1000").then((res)=>{
+        if(res.success){
+            console.log("收款模式查询成功：",res);
+            
+            this.data.itemsGathering = JSON.parse(res.object.value);
+            this.setData({
+              "itemsGathering":this.data.itemsGathering
+            });
+        }else{
+          console.log("收款模式查询失败",res);
+        }
+      });
       //收款模式
         this.setData({
           "modalOpened": true
@@ -244,6 +258,29 @@ Page({
     this.setData({
       "modalOpened":false,
       "modalOpened1":false
+    });
+  },
+   radioChange1(e) {
+    console.log('收银付款你选择的是：', e);
+    //发送请求修改设置内容
+
+  },
+  //初始化设置
+  setSetting(){
+    //收款模式
+    bnApi.requestGet(sysConfig.apiUrl+"/system/config/findByType/1000").then((res)=>{
+      if(res.success){
+        console.log("收款模式查询成功",res);
+        this.data.shoukuanSetting = JSON.parse(res.object.model);
+        let gather = this.data.itemsGathering;
+        for(let i=0;i<gather.length;i++){
+            if(gather[i].name==this.data.shoukuanSetting.name){
+              gather[i] = this.data.shoukuanSetting;
+            }
+        }
+      }else{
+        console.log("收款模式查询失败");
+      }
     });
   },
   onKeyPress(r) {
