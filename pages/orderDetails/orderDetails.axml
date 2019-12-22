@@ -25,6 +25,33 @@
         {{waterSMoney}}
       </view>
     </view>
+    <view class="tr">
+      <view class="tbL">
+        订单号
+      </view>
+      <view class="tbR">
+        {{outOrderId}}
+      </view>
+    </view>
+    <view class="tr">
+      <view class="tbL">
+        支付方式
+      </view>
+      <view class="tbR"> {{type=='F'?"支付宝刷脸":"支付宝扫码"}}
+      </view>
+    </view>
+    <view class="tr">
+      <view class="tbL">
+        支付时间
+      </view>
+      <view class="tbR">
+        {{waterEndTime}}
+      </view>
+    </view>
   </view>
-   <button style="width:70%;margin:0 auto;" type="warn">订单退款</button>
+  <span a:if="{{waterState==1}}">
+    <button style="width:70%;margin:0 auto;" type="warn" onTap="refundButton">订单退款</button>
+  </span>
+
+  
 </view>

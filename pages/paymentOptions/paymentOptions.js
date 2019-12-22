@@ -3,6 +3,7 @@ import bnApi from '/config/public';
 let sysConfig = require('/config/sysConfig')
 Page({
   data: {
+    snValue:'',
     money: 0,
     from:{
       authCode:'',
@@ -17,6 +18,7 @@ Page({
   },
   onLoad(query) {
     console.log("paymentOptions页面参数", query);
+    this.getSnValue();
     this.data.money = query.money;
     this.moneyConvert();
   },
@@ -133,6 +135,7 @@ Page({
   //调用具体支付接口
   alipay(barCode) {
     console.log("具体支付接口调用");
+    this.data.from.deviceSn = this.data.snValue;
     bnApi.requestPost(sysConfig.apiUrl+"/api/pay",this.data.from).then((res)=>{
       if(res.success){
         console.log("支付成功");
@@ -185,5 +188,15 @@ Page({
   //跳转到loading页面
   navigateToLoading() {
     my.navigateTo({ url: '../public/loading/loading' });
-  }
+  },
+   //获取sn号
+  getSnValue() {
+    my.ix.getSysProp({
+      key: 'ro.serialno',
+      success: (r) => {
+        console.log("系统信息", r);
+        this.data.snValue = r.value;
+      }
+    });
+  },
 });

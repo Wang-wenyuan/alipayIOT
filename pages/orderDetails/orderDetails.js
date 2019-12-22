@@ -1,18 +1,26 @@
 import { Page } from '/util/ix';
 import utils from '/util/utils';
+import bnApi from '/config/public';
+let sysConfig = require('/config/sysConfig')
 Page({
   data: {
     orderId: "",
-    data: {
-
-    },
-    money: 100,
-    waterMoney: 100,
-    waterSMoney: 100
+    money: '',
+    waterMoney: '',
+    waterSMoney: '',
+    outOrderId:'',
+    waterEndTime:'',
+    waterState:'',
+    from:{
+      tradeNo:'',//流水号
+      refundAmount:'',//退款金额
+      snNum:''
+    }
   },
   onLoad(query) {
     console.log("query", query);
     this.data.orderId = query.orderId;
+    this.queryOrder();
   },
   onShow() {
 
@@ -124,6 +132,82 @@ Page({
       },
       fail: (r) => {
         console.log("fail, errorCode:" + r.error);
+      }
+    });
+  },
+  //订单查询
+  queryOrder() {
+    bnApi.requestGet(sysConfig.apiUrl + "/api/water/findById/" + this.data.orderId).then((res) => {
+      if (res.success) {
+        console.log("订单查询成功", res);
+        this.data.money = res.object.waterMoney;
+        this.data.waterMoney = res.object.waterMoney;
+        this.data.waterSMoney = res.object.waterSMoney;
+        this.data.type = res.object.waterWay;
+        this.data.outOrderId = res.object.waterWater;
+        this.data.waterEndTime = this.dateFormat(res.object.waterEndTime);
+        this.data.from.tradeNo = res.object.waterNumber;
+        this.data.from.refundAmount =res.object.waterMoney;
+        this.data.waterState = res.object.waterState;
+        this.data.from.snNum = res.object.snNum;
+        this.setData({
+          "money":res.object.waterMoney,
+          "waterMoney":res.object.waterMoney,
+          "waterSMoney":res.object.waterSMoney,
+          "type":res.object.waterWay,
+          "outOrderId":res.object.waterWater,
+          "waterEndTime":this.data.waterEndTime,
+          "waterState":this.data.waterState
+        });
+      } else {
+        console.log("查询订单失败", res);
+      }
+    });
+  },
+  //格式化日期
+  dateFormat(date) {
+      var dateee = new Date(date).toJSON();
+      console.log("日期格式",dateee);
+      return new Date(+new Date(dateee) + 8 * 3600 * 1000)
+        .toISOString()
+        .replace(/T/g, " ")
+        .replace(/\.[\d]{3}Z/, "");
+    },
+  format(date, fmt) {
+    var o = {
+      "M+": date.getMonth() + 1,                 //月份 
+      "d+": date.getDate(),                    //日 
+      "h+": date.getHours(),                   //小时 
+      "m+": date.getMinutes(),                 //分 
+      "s+": date.getSeconds(),                 //秒 
+      "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
+      "S": date.getMilliseconds()             //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+      if (new RegExp("(" + k + ")").test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      }
+    }
+    return fmt;
+  },
+  refundButton(){
+    console.log("执行退款：");
+    this.refund();
+  },
+  //退款接口
+  refund(){
+    bnApi.requestPost(sysConfig.apiUrl + "/api/refund",this.data.from).then((res)=>{
+      console.log("退款参数",this.data.from);
+      if(res.success){
+        console.log("退款成功",res);
+        my.navigateTo({
+          url: '../public/success/success'
+        });
+      }else{
+        console.log("退款失败",res);
       }
     });
   }
