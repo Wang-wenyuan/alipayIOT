@@ -10,7 +10,7 @@ Page({
     audible: false,                               // 海报（视频类）是否有声音
     show_default_poster: true,                 // 是否展示本地兜底海报
     background: ['/image/lunbo.jpg', '/image/lunbo.jpg', '/image/lunbo.jpg'],
-    buttonImage: "/image/timg.jpg",
+    buttonImage: "/image/buttonImg.jpg",
     indicatorDots: true,
     autoplay: true,
     vertical: false,
@@ -163,11 +163,7 @@ Page({
     // 页面加载
     console.log("请求url:", sysConfig.apiUrl);
     //https://localhost:2602/agent/agentSelect.do
-    bnApi.requestGet(sysConfig.apiUrl + "/agent/agentSelect.do").then((res) => {
-      console.log("网络请求发起结果", res);
-    }).catch((err) => {
-      console.log("嫡传错误信息", err);
-    });
+   
   },
   onReady() {
     // 页面加载完成

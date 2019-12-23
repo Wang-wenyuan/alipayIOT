@@ -11,9 +11,12 @@
       
     </view>
   </view>
+  <view style="width:100%;height:1vh;">
+    
+  </view>
   <!--脚部-->
   <view class="footer">
-    <image style="width:100%;height:10.1vh" src="/image/timg.jpg" />
+    <image style="width:100%;height:10.1vh" src="/image/botton2.png" />
   </view>
   <modal
 		show="{{modalOpened}}"

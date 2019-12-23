@@ -11,16 +11,24 @@ Page({
     outOrderId:'',
     waterEndTime:'',
     waterState:'',
+    type:'pay',
     from:{
       tradeNo:'',//流水号
       refundAmount:'',//退款金额
       snNum:''
-    }
+    },
+    items:{}
   },
   onLoad(query) {
     console.log("query", query);
     this.data.orderId = query.orderId;
-    this.queryOrder();
+    this.data.type = query.type;
+    if(this.data.type=="pay"){
+      this.queryOrder();
+    }else{
+      this.queryRefund();
+    }
+    
   },
   onShow() {
 
@@ -161,6 +169,21 @@ Page({
         });
       } else {
         console.log("查询订单失败", res);
+      }
+    });
+  },
+  //退款订单查询
+  queryRefund(){
+    bnApi.requestGet(sysConfig.apiUrl + "/api/refund/findById/" + this.data.orderId).then((res)=>{
+      if(res.success){
+        console.log("退款订单:",res);
+        this.items = res.object;
+        this.data.money = res.object.refundFee;
+        this.items.refundCreateTime = this.dateFormat(res.object.refundCreateTime);
+        this.setData({
+          "items":this.items,
+          "money":this.data.money
+        });
       }
     });
   },

@@ -10,7 +10,7 @@ Page({
   },
   goBack() {
     my.navigateTo({
-      url: '../../orderPage/orderPage'
+      url: '../../index/index'
     });
   }
 });

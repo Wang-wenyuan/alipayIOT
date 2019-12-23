@@ -6,7 +6,7 @@ Page({
     shoukuanSetting:{},
     items: [
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/1.png',
         title: '设备绑定',
         extra: '未绑定',
         arrow: true,
@@ -14,13 +14,13 @@ Page({
     ],
     items1: [
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/2.png',
         title: '收款模式',
         extra: '即插即用模式',
         arrow: true,
       },
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/3.png',
         title: '默认支付方式',
         extra: '刷脸支付',
         arrow: 'up',
@@ -29,7 +29,7 @@ Page({
     ],
     items2: [
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/4.png',
         title: '打印设置',
         extra: '即插即用模式',
         arrow: true,
@@ -37,7 +37,7 @@ Page({
     ],
     items3: [
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/5.png',
         title: '系统设置',
         extra: '',
         arrow: true,
@@ -46,12 +46,12 @@ Page({
     ],
     items4: [
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/6.png',
         title: '软件版本',
         extra: '0.0.1',
       },
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/7.png',
         title: '小程序容器版本',
         extra: 'xxxxx',
       }
@@ -83,7 +83,7 @@ Page({
     let extra = "未绑定";
     let items =  [
       {
-        thumb: '/image/timg.jpg',
+        thumb: '/image/1.jpg',
         title: '设备绑定',
         extra: extra,
         arrow: true,
@@ -153,12 +153,12 @@ Page({
 
         let items4 = [
           {
-            thumb: '/image/timg.jpg',
+            thumb: '/image/6.png',
             title: '软件版本',
             extra: '0.0.1',
           },
           {
-            thumb: '/image/timg.jpg',
+            thumb: '/image/7.png',
             title: '小程序容器版本',
             extra: r.versionName,
           }

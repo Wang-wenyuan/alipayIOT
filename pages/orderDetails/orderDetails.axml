@@ -1,57 +1,101 @@
 <view class="page">
-  <view style="width:80%;margin:0 auto;font-size:15px;height:20px;text-align: center;">
+  <span a:if="{{type=='pay'}}">
+    <view style="width:80%;margin:0 auto;font-size:15px;height:20px;text-align: center;">
     北京邦华信诺电子科技有限公司
-  </view>
-  <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
+    </view>
+    <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
     +{{money}}
-  </view>
-  <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
-    <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
-  </view>
-  <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
-    <view class="tr">
-      <view class="tbL">
+    </view>
+    <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
+      <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
+    </view>
+    <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
+      <view class="tr">
+        <view class="tbL">
         消费金额
-      </view>
-      <view class="tbR">
+        </view>
+        <view class="tbR">
         {{waterMoney}}
+        </view>
       </view>
-    </view>
-    <view class="tr">
-      <view class="tbL">
+      <view class="tr">
+        <view class="tbL">
         实收金额
-      </view>
-      <view class="tbR">
+        </view>
+        <view class="tbR">
         {{waterSMoney}}
+        </view>
       </view>
-    </view>
-    <view class="tr">
-      <view class="tbL">
+      <view class="tr">
+        <view class="tbL">
         订单号
-      </view>
-      <view class="tbR">
+        </view>
+        <view class="tbR">
         {{outOrderId}}
+        </view>
       </view>
-    </view>
-    <view class="tr">
-      <view class="tbL">
+      <view class="tr">
+        <view class="tbL">
         支付方式
+        </view>
+        <view class="tbR"> {{type=='F'?"支付宝刷脸":"支付宝扫码"}}
+        </view>
       </view>
-      <view class="tbR"> {{type=='F'?"支付宝刷脸":"支付宝扫码"}}
-      </view>
-    </view>
-    <view class="tr">
-      <view class="tbL">
+      <view class="tr">
+        <view class="tbL">
         支付时间
-      </view>
-      <view class="tbR">
+        </view>
+        <view class="tbR">
         {{waterEndTime}}
+        </view>
       </view>
     </view>
-  </view>
-  <span a:if="{{waterState==1}}">
-    <button style="width:70%;margin:0 auto;" type="warn" onTap="refundButton">订单退款</button>
+    <span a:if="{{type=='pay'}}">
+      <button style="width:70%;margin:0 auto;" type="warn" onTap="refundButton">订单退款</button>
+    </span>
   </span>
-
-  
+  <span a:if="{{type=='refund'}}">
+    <view style="width:80%;margin:0 auto;font-size:15px;height:20px;text-align: center;">
+    北京邦华信诺电子科技有限公司
+    </view>
+    <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
+    -{{money}}
+    </view>
+    <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
+      <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
+    </view>
+    <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
+      <view class="tr">
+        <view class="tbL">
+        退款金额
+        </view>
+        <view class="tbR">
+        {{items.refundFee}}
+        </view>
+      </view>
+      <view class="tr">
+        <view class="tbL">
+        订单号
+        </view>
+        <view class="tbR">
+        {{items.outTradeNo}}
+        </view>
+      </view>
+      <view class="tr">
+        <view class="tbL">
+        支付方式
+        </view>
+        <view class="tbR"> {{items.waterWay=='F'?"支付宝刷脸":"支付宝扫码"}}
+        </view>
+      </view>
+      <view class="tr">
+        <view class="tbL">
+        退款时间
+        </view>
+        <view class="tbR">
+        {{items.refundCreateTime}}
+        </view>
+      </view>
+    </view>
+  </span>
 </view>

@@ -6,7 +6,7 @@ Page({
     headerImage: "/image/timg.jpg",
     footerImage: "/image/timg.jpg",
     snValue: '',
-    index:1,//页面展示
+    index: 1,//页面展示
     tabs: [
       {
         title: '当面付流水',
@@ -21,6 +21,7 @@ Page({
     activeTab: 0,//默认选中那个
     itemsThumb: [
     ],
+    itemsThumb2: [],
     date: "",
     totalMoney: 0,
     totalCount: 0,
@@ -52,7 +53,7 @@ Page({
     //获取设备sn号
     this.getSnValue();
   },
-  onShow(){
+  onShow() {
     this.getSnValue();
   },
   //回调函数
@@ -82,11 +83,11 @@ Page({
     console.log("选择变换", index);
     switch (index) {
       case 0:
-      this.data.index = 0;
+        this.data.index = 0;
         this.queryOrder();
         this.setData({
           activeTab: index,
-          "index":0
+          "index": 0
         });
         break;
       case 1:
@@ -95,7 +96,7 @@ Page({
         this.queryRefund();
         this.setData({
           activeTab: index,
-          "index":2
+          "index": 2
         });
         break;
     }
@@ -121,6 +122,11 @@ Page({
     my.navigateTo({ url: '../orderDetails/orderDetails?orderId=' + ev.target.dataset.index})
     console.log("点击事件", ev);
   },
+  //退款点击事件
+  onItemClick2(ev) {
+    my.navigateTo({ url: '../orderDetails/orderDetails?orderId=' + ev.target.dataset.index + "&type=refund" })
+    console.log("点击事件", ev);
+  },
   //日期点击事件
   datePicker() {
     my.datePicker({
@@ -133,14 +139,14 @@ Page({
           "date": res.date
         });
         console.log("日期选择", res);
-        if(this.data.index==0){
+        if (this.data.index == 0) {
           this.queryOrder();
         }
-        if(this.data.index==2){
+        if (this.data.index == 2) {
           this.queryRefund();
         }
-        
-        
+
+
       },
     });
   },
@@ -229,8 +235,17 @@ Page({
       if (res.success) {
         console.log("订单查询成功", res);
         this.data.itemsThumb = res.queryResult.list;
+        let items = res.queryResult.list;
+        this.data.totalCount = res.queryResult.total;
+        this.data.totalMoney = 0;
+        for(let i=0;i<items.length;i++){
+          this.data.totalMoney +=items[i].waterMoney;
+        }
+         
         this.setData({
-          "itemsThumb": res.queryResult.list
+          "itemsThumb": res.queryResult.list,
+          "totalCount":this.data.totalCount,
+          "totalMoney":this.data.totalMoney
         });
       } else {
         console.log("查询订单失败", res);
@@ -241,17 +256,21 @@ Page({
   queryRefund() {
     this.data.from1.dateTime = this.data.date;
     this.data.from1.snNum = this.data.snValue;
-    console.log("退款记录:",this.data.from1);
+    console.log("退款记录:", this.data.from1);
     bnApi.requestPost(sysConfig.apiUrl + "/api/refund/list/" + this.data.page + "/" + this.data.size, this.data.from1).then((res) => {
       if (res.success) {
         console.log("退款查询成功", res);
-        this.data.itemsThumb = res.queryResult.list;
+        this.data.itemsThumb2 = res.queryResult.list;
         this.setData({
-          "itemsThumb": res.queryResult.list
+          "itemsThumb2": res.queryResult.list
         });
       } else {
 
       }
     });
+  },
+  //刷新页面
+  refresh(){
+    this.onLoad();
   }
 });
