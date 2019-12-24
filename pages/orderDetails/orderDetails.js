@@ -23,6 +23,7 @@ Page({
     console.log("query", query);
     this.data.orderId = query.orderId;
     this.data.type = query.type;
+    console.log("type类型",query.type);
     if(this.data.type=="pay"){
       this.queryOrder();
     }else{
@@ -165,7 +166,8 @@ Page({
           "type":res.object.waterWay,
           "outOrderId":res.object.waterWater,
           "waterEndTime":this.data.waterEndTime,
-          "waterState":this.data.waterState
+          "waterState":this.data.waterState,
+          "type":"pay"
         });
       } else {
         console.log("查询订单失败", res);
@@ -182,7 +184,8 @@ Page({
         this.items.refundCreateTime = this.dateFormat(res.object.refundCreateTime);
         this.setData({
           "items":this.items,
-          "money":this.data.money
+          "money":this.data.money,
+          "type":"refund"
         });
       }
     });

@@ -119,7 +119,7 @@ Page({
   },
   //点击事件
   onItemClick(ev) {
-    my.navigateTo({ url: '../orderDetails/orderDetails?orderId=' + ev.target.dataset.index})
+    my.navigateTo({ url: '../orderDetails/orderDetails?orderId=' + ev.target.dataset.index+"&type=pay"})
     console.log("点击事件", ev);
   },
   //退款点击事件
