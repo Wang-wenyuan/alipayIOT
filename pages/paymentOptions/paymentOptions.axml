@@ -11,4 +11,14 @@
     <button class="facePay" type="primary" onTap="facePayClick">刷脸扫码支付</button>
     <button class="faceCash" type="primary" onTap="faceCashClick">刷脸付押金</button>
   </view>
+  <!--不能进行扫脸支付-->
+  <modal
+		show="{{modalOpened21}}"
+		onModalClick="onModalClick21"
+		onModalClose="closeButton"
+	>
+		<view slot="header">错误提示</view>
+		请绑定机具，并授权
+		<view slot="footer" onTap="closeButton">确定</view>
+	</modal>
 </view>

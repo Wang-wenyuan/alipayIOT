@@ -3,18 +3,19 @@ import bnApi from '/config/public';
 let sysConfig = require('/config/sysConfig')
 Page({
   data: {
-    snValue:'',
+    snValue: '',
     money: 0,
-    from:{
-      authCode:'',
-      buyerId:'',
-      codeType:'',
-      deviceSn:'',
-      sellerId:'',
-      subject:'商品订单',
-      totalAmount:'',
-      waterNote:''
-    }
+    from: {
+      authCode: '',
+      buyerId: '',
+      codeType: '',
+      deviceSn: '',
+      sellerId: '',
+      subject: '商品订单',
+      totalAmount: '',
+      waterNote: ''
+    },
+    modalOpened21:false
   },
   onLoad(query) {
     console.log("paymentOptions页面参数", query);
@@ -62,7 +63,8 @@ Page({
   //点击事件，跳转到收银台
   facePayClick() {
     console.log("刷脸扫码按钮点击，进入收银台")
-    this.startApp(this.data.money);
+    this.existsSnBind();
+    
   },
   //点击事件，刷脸付押金
   /**
@@ -72,7 +74,8 @@ Page({
    */
   faceCashClick() {
     console.log("刷脸付押金按钮点击,进入扫脸认证");
-    this.startApp(this.data.money);
+    //this.startApp(this.data.money);
+    
     // my.ix.faceVerify({
     //   //certNo: 'XXX',
     //   //certName: 'XXX',
@@ -91,6 +94,7 @@ Page({
   },
   //唤醒收银台
   startApp(money) {
+
     //订单号生成，时间戳加上随机数
     let time = new Date().getTime();
     let random_no = "";
@@ -119,7 +123,7 @@ Page({
           this.payClose();
           //调用支付接口
           this.alipay(r.barCode);
-          
+
 
           if (r.codeType == "F") {
             //刷脸
@@ -136,16 +140,16 @@ Page({
   alipay(barCode) {
     console.log("具体支付接口调用");
     this.data.from.deviceSn = this.data.snValue;
-    bnApi.requestPost(sysConfig.apiUrl+"/api/pay",this.data.from).then((res)=>{
-      if(res.success){
+    bnApi.requestPost(sysConfig.apiUrl + "/api/pay", this.data.from).then((res) => {
+      if (res.success) {
         console.log("支付成功");
         //获取支付结果
-          this.payResult(this.data.orderId, this.data.money, 0, 0);
-      }else{
+        this.payResult(this.data.orderId, this.data.money, 0, 0);
+      } else {
         console.log("支付失败，但不一定失败，请查询支付宝账单");
       }
     });
-    
+
   },
   //只有扫码成功才能调用获取支付结果
   payResult(bizNo, totalAmount, bizAmount, discount) {
@@ -189,7 +193,7 @@ Page({
   navigateToLoading() {
     my.navigateTo({ url: '../public/loading/loading' });
   },
-   //获取sn号
+  //获取sn号
   getSnValue() {
     my.ix.getSysProp({
       key: 'ro.serialno',
@@ -197,6 +201,31 @@ Page({
         console.log("系统信息", r);
         this.data.snValue = r.value;
       }
+    });
+  },
+  //判断设备是否绑定，是否授权
+  existsSnBind() {
+    bnApi.requestGet(sysConfig.apiUrl + "/api/machines/findBySnNum/" + this.data.snValue).then((res) => {
+      if (res.success) {
+        console.log("可以进行商家收账", res);
+        //此代码注释掉转账可能存在错误
+        this.data.from.sellerId = res.object.merchantsPid;
+        //启动收银台
+        this.startApp(this.data.money);
+      } else {
+        console.log("不能进行商家收账，",res);
+        this.data.modalOpened21 = true;
+        this.setData({
+          "modalOpened21": true
+        });
+      }
+    });
+  },
+  //关闭弹窗
+  closeButton() {
+    this.data.modalOpened21 = false;
+    this.setData({
+      "modalOpened21": false
     });
   },
 });

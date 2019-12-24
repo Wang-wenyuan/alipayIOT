@@ -1,7 +1,7 @@
 <view class="page">
   <!--上半部分-->
   <view class="header">
-    <image style="width:100%;height:40vh" src="/image/timg.jpg" />
+    <image style="width:100%;height:40vh" src="/image/settingHeader.png" />
   </view>
   <!--body部分-->
   <view class="body">

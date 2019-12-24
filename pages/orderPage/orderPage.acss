@@ -67,8 +67,9 @@
   width: 95%;
   color: white;
   font-size: 15px;
-  padding-top: 5px;
-  align-content: unset
+  align-content: unset;
+  float: left;
+  margin-top: -10px;
 }
 .payOption{
   width: 100%;

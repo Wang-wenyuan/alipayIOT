@@ -36,7 +36,8 @@ Page({
       snNum: '',
       waterNumber: '',
       waterState: '1',//支付状态
-      waterWater: ''
+      waterWater: '',
+      waterWay:''
     },
     //退款记录
     from1: {
@@ -45,7 +46,8 @@ Page({
       refundAmount: '',
       snNum: '',
       tradeNo: ''
-    }
+    },
+    flag:0,
   },
   onLoad() {
     this.data.date = this.format(new Date(), "yyyy-MM-dd");
@@ -81,6 +83,7 @@ Page({
   },
   handleTabClick({ index }) {
     console.log("选择变换", index);
+    this.data.flag = 0;
     switch (index) {
       case 0:
         this.data.index = 0;
@@ -104,6 +107,7 @@ Page({
   },
   handleTabChange({ index }) {
     console.log("选择变换2", index);
+    this.data.flag = 2;
     this.setData({
       activeTab: index,
     });
@@ -161,7 +165,26 @@ Page({
         console.log("选择完毕", res);
         if (res.selectedOneOption == null || res.selectedOneOption == "") {
           //不做处理
+          //then.queryOrder();
         } else {
+          //调用订单查询接口
+          if(res.selectedOneIndex==1){
+            //刷脸
+            then.data.from.waterWay = "F";
+          }
+          if(res.selectedOneIndex ==2){
+            then.data.from.waterWay = "C";
+          }
+          if(res.selectedOneIndex == 0){
+            then.data.from.waterWay="";
+          }
+          if(this.data.flag==0){
+              then.queryOrder();
+          }
+          if(this.data.flag == 2){
+            then.queryRefund();
+          }
+          
           then.setData({
             "payName": res.selectedOneOption,
             "payOption": res.selectedOneIndex
@@ -189,9 +212,14 @@ Page({
     });
   },
   handleSubmit(value) {
-    my.alert({
-      content: value,
-    });
+    if(this.data.flag==0){
+      this.data.from.waterWater = value;
+    }
+    if(this.data.flag ==2){
+      this.data.from2.outTradeNo = value;
+    }
+    
+    this.queryOrder();
   },
   //日期格式转换
   format(date, fmt) {
@@ -245,11 +273,13 @@ Page({
         this.setData({
           "itemsThumb": res.queryResult.list,
           "totalCount":this.data.totalCount,
-          "totalMoney":this.data.totalMoney
+          "totalMoney":this.data.totalMoney,
+          "totalCountMax":this.data.totalMoney
         });
       } else {
         console.log("查询订单失败", res);
       }
+      this.data.from.waterWater = "";
     });
   },
   //退款记录查询
@@ -267,6 +297,7 @@ Page({
       } else {
 
       }
+      this.data.from2.outTradeNo = "";
     });
   },
   //刷新页面
