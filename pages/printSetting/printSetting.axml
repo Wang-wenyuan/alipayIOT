@@ -9,7 +9,7 @@
           <view class="am-list-brief">{{item.brief}}</view>
           <view slot="extra">
             <view class="switch-item">
-              <switch checked onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : 'switch closed'}}" />
+              <switch checked = "{{checked}}" onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : ''}}" />
             </view>
           </view>
         </list-item>
@@ -35,7 +35,7 @@
           <view class="am-list-brief">{{item.brief}}</view>
           <view slot="extra">
             <view class="switch-item">
-              <switch checked onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : 'switch closed'}}" />
+              <switch checked = "{{checked2}}" onChange="switch2Change" aria-label="{{switch2 ? 'switch opened' : 'switch closed'}}" />
             </view>
           </view>
         </list-item>
@@ -81,12 +81,17 @@
   <button type="primary" onTap="printLin">确定</button>
   <!--自定义抬头弹出框-->
   <modal show="{{modalOpened1}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
-    <textarea focus="{{focus}}" onFocus="onFocus" onBlur="onBlur1" placeholder="请输入" />
-    <view slot="footer" onTap="sureButton">确定</view>
+    <textarea focus="{{focus}}" onFocus="onFocus"  onConfirm="gukeUreButton" onBlur="onBlur1" placeholder="请输入" value="{{gukeTaitouValue}}" />
+    <view slot="footer" onTap="gukeUreButton">确定</view>
   </modal>
   <modal show="{{modalOpened2}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
-    <textarea focus="{{focus}}" onFocus="onFocus" onBlur="onBlur2" placeholder="请输入" />
-    <view slot="footer" onTap="sureButton">确定</view>
+    <textarea focus="{{focus}}" onFocus="onFocus" onConfirm="shopUreButton" onBlur="onBlur2" placeholder="请输入" value="{{shopTaitouValue}}"/>
+    <view slot="footer" onTap="shopUreButton">确定</view>
+  </modal>
+  <!--打印底部广告-->
+  <modal show="{{modalOpened6}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
+    <textarea focus="{{focus}}" onFocus="onFocus" onConfirm="bottomButton" onBlur="onBlur2" placeholder="请输入" value="{{bottomAdvertising}}"/>
+    <view slot="footer" onTap="bottomButton">确定</view>
   </modal>
   <!--打印时间间隔-->
   <modal show="{{modalOpened3}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
@@ -112,4 +117,6 @@
   </view>
   <view slot="footer" onTap="sureButton">确定</view>
   </modal>
+
+  
 </view>
