@@ -78,7 +78,6 @@
       </block>
     </list>
   </scroll-view>
-  <button type="primary" onTap="printLin">确定</button>
   <!--自定义抬头弹出框-->
   <modal show="{{modalOpened1}}" onModalClick="onModalClick2" onModalClose="onModalClose2" topImageSize="lg" closeType="1">
     <textarea focus="{{focus}}" onFocus="onFocus"  onConfirm="gukeUreButton" onBlur="onBlur1" placeholder="请输入" value="{{gukeTaitouValue}}" />
