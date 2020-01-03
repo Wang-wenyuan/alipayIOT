@@ -276,6 +276,53 @@ Page({
       console.log("查询打印配置", res);
       if (res.success) {
         this.data.from = res.object;
+        let model = res.object.model;
+        for (let i = 0; i < 28; i++) {
+          model = model.replace("\\", "");
+        }
+        console.log("循环过后字符串",model);
+        let jsonModel = JSON.parse(model);
+
+        this.data.model = jsonModel;
+        this.data.from.name = res.object.name;
+        this.data.from.type = res.object.type;
+        let itemsreceipt = this.data.itemsReceipt;
+        for (let i = 0; i < itemsreceipt.length; i++) {
+          if (itemsreceipt[i].name == jsonModel.orderIdPrint) {
+            itemsreceipt[i].checked = true;
+            this.data.items4[1].extra = itemsreceipt[i].value;
+          }
+
+
+        }
+
+        let itemsRadio = this.data.itemsRadio;
+        for (let i = 0; i < itemsRadio.length; i++) {
+          if (itemsRadio[i].name == jsonModel.printTime) {
+            itemsRadio[i].checked = true;
+            this.data.items5[0].extra = itemsRadio[i].value;
+          }
+
+
+
+        }
+        console.log("1", this.data.items4);
+        console.log("1", this.data.items5);
+        
+        this.setData({
+          "checked1": jsonModel.clientUnite.ifPrintClientUnite,
+          "gukeTaitouValue": jsonModel.clientUnite.clientUniteContent,
+          "checked2": jsonModel.commercialUnite.ifPrintCommercialUnite,
+          "shopTaitouValue": jsonModel.commercialUnite.commercialUniteContent,
+          "bottomAdvertising": jsonModel.bottomAdvertising,
+          "itemsReceipt": itemsreceipt,
+          "items4": this.data.items4,
+          "items5": this.data.items5,
+          "itemsRadio": this.data.itemsRadio,
+          "itemsReceipt": this.data.itemsReceipt
+        });
+        console.log("打印顾客联按钮",this.data.checked1);
+
       } else {
         console.log("没有查询到该设备号下的打印设置");
         bnApi.requestGet(sysConfig.apiUrl + "/system/dictionary/findByType/2000").then((res) => {
@@ -283,6 +330,8 @@ Page({
           if (res.success) {
             let value = JSON.parse(res.object.value);
             this.data.model = value;
+            this.data.from.name = res.object.name;
+            this.data.from.type = res.object.type;
             let itemsreceipt = this.data.itemsReceipt;
             for (let i = 0; i < itemsreceipt.length; i++) {
               if (itemsreceipt[i].name == value.orderIdPrint) {
@@ -372,8 +421,17 @@ Page({
   onUnload() {
     // 页面被关闭
     console.log("页面被关闭");
+    //model进行转换
+    let model = JSON.stringify(JSON.stringify(this.data.model));
+    this.data.from.model = model.substr(1, model.length - 1);
     //调用保存
-    bnApi.requestPost(sysConfig.apiUrl+"/system/config/update/",).then((res)=>{
+    bnApi.requestPost(sysConfig.apiUrl + "/system/config/update/1", this.data.from).then((res) => {
+      if (res.success) {
+        console.log("保存成功", res);
+
+      } else {
+        console.log("保存失败", res);
+      }
 
     });
 

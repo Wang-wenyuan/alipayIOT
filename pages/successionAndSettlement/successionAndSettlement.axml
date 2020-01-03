@@ -14,7 +14,7 @@
       支付宝:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      实收小计: {{officialCount}}
+      实收小计: {{ali.totalMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -22,7 +22,7 @@
       收款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{successNum}}
+      {{ali.totalAllMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -30,17 +30,17 @@
       退款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{breakNum}}
+      {{ali.refundMoney}}
       </view>
     </view>
   </view>
   <view class="moneyList1">
     <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
       <view style="width:50%;text-align: left;float:left">
-      支付宝:
+      微信:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      实收小计: {{officialCount}}
+      实收小计: {{wechar.totalMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -48,7 +48,7 @@
       收款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{successNum}}
+      {{wechar.totalAllMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -56,17 +56,17 @@
       退款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{breakNum}}
+      {{wechar.refundMoney}}
       </view>
     </view>
   </view>
   <view class="moneyList1">
     <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
       <view style="width:50%;text-align: left;float:left">
-      支付宝:
+      全部:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      实收小计: {{officialCount}}
+      实收小计: {{all.totalMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -74,7 +74,7 @@
       收款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{successNum}}
+      {{all.totalAllMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -82,12 +82,12 @@
       退款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{breakNum}}
+      {{all.refundMoney}}
       </view>
     </view>
   </view>
   <view style="width:80%;margin:0 auto">
-    <button type="primary" style="width:30%;margin:10px auto 0px auto; float:left" onTap="queryButton">直接结算</button>
-    <button type="primary" style="width:30%;margin:10px auto 0px auto; float:right" onTap="queryButton">店员结算</button>
+    <button type="primary" style="width:30%;margin:10px auto 0px auto; float:left" onTap="settlement">直接结算</button>
+    <button type="primary" style="width:30%;margin:10px auto 0px auto; float:right" onTap="settlement">店员结算</button>
   </view>
 </view>

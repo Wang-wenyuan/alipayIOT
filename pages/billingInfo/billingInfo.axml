@@ -12,5 +12,17 @@
         </list-item>
       </block>
     </list>
-     <button type="primary" style="width:80%;margin:10px auto 0px auto;" onTap="queryButton">打印</button>
+    <button type="primary" style="width:80%;margin:10px auto 0px auto;" onTap="queryButton">查询</button>
+    <view style="height:10px"></view>
+    <list>
+      <view slot="header">
+      </view>
+      <block a:for="{{items1}}">
+        <list-item thumb="{{item.thumb}}" arrow="{{item.arrow}}" data-index="{{item.id}}"  onClick="queryDetail" index="{{index}}" key="items1-{{index}}" last="{{index === (items2.length - 1)}}">
+					{{item.startTime}} ----- {{item.endTime}}
+          <view class="am-list-brief">{{item.brief}}</view>
+        </list-item>
+      </block>
+    </list>
+     
 </view>

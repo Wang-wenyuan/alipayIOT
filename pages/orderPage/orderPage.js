@@ -6,7 +6,7 @@ Page({
     headerImage: "/image/timg.jpg",
     footerImage: "/image/timg.jpg",
     snValue: '',
-    index: 1,//页面展示
+    index: 0,//页面展示
     tabs: [
       {
         title: '当面付流水',
@@ -33,18 +33,20 @@ Page({
     //订单
     from: {
       dateTime: '',
-      snNum: '',
+      sn: '',
       waterNumber: '',
-      waterState: '1',//支付状态
-      waterWater: '',
-      waterWay:''
+      status: '1',//支付状态
+      outTradeNo: '',
+      waterWay:'',
+      limit:100,
+      page:0
     },
     //退款记录
     from1: {
       dateTime: '',
       outTradeNo: '',
       refundAmount: '',
-      snNum: '',
+      sn: '',
       tradeNo: ''
     },
     flag:0,
@@ -143,7 +145,9 @@ Page({
           "date": res.date
         });
         console.log("日期选择", res);
+        console.log("日期选择index",this.data.index);
         if (this.data.index == 0) {
+          console.log("日期选择");
           this.queryOrder();
         }
         if (this.data.index == 2) {
@@ -213,7 +217,7 @@ Page({
   },
   handleSubmit(value) {
     if(this.data.flag==0){
-      this.data.from.waterWater = value;
+      this.data.from.outTradeNo = value;
     }
     if(this.data.flag ==2){
       this.data.from2.outTradeNo = value;
@@ -257,9 +261,10 @@ Page({
   //订单查询
   queryOrder() {
     this.data.from.dateTime = this.data.date;
-    this.data.from.snNum = this.data.snValue;
+    this.data.from.sn = this.data.snValue;
 
-    bnApi.requestPost(sysConfig.apiUrl + "/api/water/list/" + this.data.page + "/" + this.data.size, this.data.from).then((res) => {
+    bnApi.requestPost(sysConfig.apiUrl + "/order/list", this.data.from).then((res) => {
+      console.log("res",this.data.from);
       if (res.success) {
         console.log("订单查询成功", res);
         this.data.itemsThumb = res.queryResult.list;
@@ -267,8 +272,9 @@ Page({
         this.data.totalCount = res.queryResult.total;
         this.data.totalMoney = 0;
         for(let i=0;i<items.length;i++){
-          this.data.totalMoney +=items[i].waterMoney;
+          this.data.totalMoney +=items[i].actualPayment;
         }
+        this.data.totalMoney = (this.data.totalMoney)/100;
          
         this.setData({
           "itemsThumb": res.queryResult.list,
@@ -285,7 +291,7 @@ Page({
   //退款记录查询
   queryRefund() {
     this.data.from1.dateTime = this.data.date;
-    this.data.from1.snNum = this.data.snValue;
+    this.data.from1.sn = this.data.snValue;
     console.log("退款记录:", this.data.from1);
     bnApi.requestPost(sysConfig.apiUrl + "/api/refund/list/" + this.data.page + "/" + this.data.size, this.data.from1).then((res) => {
       if (res.success) {
@@ -303,5 +309,14 @@ Page({
   //刷新页面
   refresh(){
     this.onLoad();
+  },
+  //时间转换
+  parserDate (date) {
+    var t = Date.parse(date);
+    if (!isNaN(t)) {
+      return new Date(Date.parse(date.replace(/-/g, "/")));
+    } else {
+      return new Date();
+    }
   }
 });

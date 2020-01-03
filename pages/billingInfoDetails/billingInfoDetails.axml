@@ -32,7 +32,7 @@
       支付宝:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      实收小计: {{officialCount}}
+      实收小计: {{ali.totalMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -40,7 +40,7 @@
       收款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{successNum}}
+      {{ali.totalAllMoney}}
       </view>
     </view>
     <view style="width:100%; height:10px;margin-bottom:20px;">
@@ -48,35 +48,59 @@
       退款:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{breakNum}}
+      {{ali.refundMoney}}
       </view>
     </view>
   </view>
-  <view class="footer">
-    <view class="moneyList">
-      <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
-        <view style="width:50%;text-align: left;float:left">
-      订单总金额:{{totalMoney}}
-        </view>
-        <view style="width:50%;text-align: right;float:right">
-      实收总计: {{officialCount}}
-        </view>
+  <view class="moneyList1">
+    <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
+      <view style="width:50%;text-align: left;float:left">
+      微信:
       </view>
-      <view style="width:100%; height:10px;margin-bottom:20px;">
-        <view style="width:50%;text-align: left;float:left">
-      成功笔数:
-        </view>
-        <view style="width:50%;text-align: right;float:right">
-      {{successNum}}
-        </view>
+      <view style="width:50%;text-align: right;float:right">
+      实收小计: {{wechar.totalMoney}}
       </view>
-      <view style="width:100%; height:10px;margin-bottom:20px;">
-        <view style="width:50%;text-align: left;float:left">
-      退款总计:
-        </view>
-        <view style="width:50%;text-align: right;float:right">
-      {{breakNum}}
-        </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      收款:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{wechar.totalAllMoney}}
+      </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      退款:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{wechar.refundMoney}}
+      </view>
+    </view>
+  </view>
+  <view class="moneyList1">
+    <view style="width:100%;height:10px; margin-bottom:20px;font-size:17px">
+      <view style="width:50%;text-align: left;float:left">
+      全部:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      实收小计: {{all.totalMoney}}
+      </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      收款:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{all.totalAllMoney}}
+      </view>
+    </view>
+    <view style="width:100%; height:10px;margin-bottom:20px;">
+      <view style="width:50%;text-align: left;float:left">
+      退款:
+      </view>
+      <view style="width:50%;text-align: right;float:right">
+      {{all.refundMoney}}
       </view>
     </view>
   </view>

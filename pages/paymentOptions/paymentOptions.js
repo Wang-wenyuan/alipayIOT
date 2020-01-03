@@ -122,7 +122,7 @@ Page({
           //开启监听收银台关闭
           this.payClose();
           //调用支付接口
-          this.alipay(r.barCode);
+         this.alipay(r.barCode);
 
 
           if (r.codeType == "F") {
@@ -205,11 +205,11 @@ Page({
   },
   //判断设备是否绑定，是否授权
   existsSnBind() {
-    bnApi.requestGet(sysConfig.apiUrl + "/api/machines/findBySnNum/" + this.data.snValue).then((res) => {
+    bnApi.requestGet(sysConfig.apiUrl + "/terminalEntity/findBySnNum/" + this.data.snValue).then((res) => {
       if (res.success) {
         console.log("可以进行商家收账", res);
         //此代码注释掉转账可能存在错误
-        this.data.from.sellerId = res.object.merchantsPid;
+        //this.data.from.sellerId = res.object.merchantsPid;
         //启动收银台
         this.startApp(this.data.money);
       } else {

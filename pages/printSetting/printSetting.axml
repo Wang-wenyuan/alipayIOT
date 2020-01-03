@@ -9,7 +9,7 @@
           <view class="am-list-brief">{{item.brief}}</view>
           <view slot="extra">
             <view class="switch-item">
-              <switch checked = "{{checked}}" onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : ''}}" />
+              <switch checked = "{{checked1}}" onChange="switch1Change" aria-label="{{switch1 ? 'switch opened' : ''}}" />
             </view>
           </view>
         </list-item>
