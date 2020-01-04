@@ -83,7 +83,7 @@ Page({
              this.data.all.totalAllMoney = this.data.all.totalAllMoney+this.data.all.totalMoney;
           }
         }
-        console.log("交班结算详情参数，",this.data.ali);
+        
         this.setData({
           "ali":this.data.ali,
           "wechar":this.data.wechar,

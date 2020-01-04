@@ -74,12 +74,12 @@ query(){
           if(aliList[i].status == 1){
             //支付成功
             this.data.ali.totalMoney = aliList[i].totalMoney;
-            this.data.ali.totalAllMoney = this.data.ali.totalElement+this.data.ali.totalMoney;
+            this.data.ali.totalAllMoney = this.data.ali.totalAllMoney+this.data.ali.totalMoney;
           }
           if(aliList[i].status == 3){
             //退款
              this.data.ali.refundMoney = aliList[i].totalMoney;
-             this.data.ali.totalAllMoney = this.data.ali.totalElement+this.data.ali.totalMoney;
+             this.data.ali.totalAllMoney = this.data.ali.totalAllMoney+aliList[i].totalMoney;
           }
           
         }
@@ -89,12 +89,12 @@ query(){
           if(wecharList[i].status == 1){
             //支付成功
             this.data.wechar.totalMoney = wecharList[i].totalMoney;
-            this.data.wechar.totalAllMoney = this.data.wechar.totalElement+this.data.wechar.totalMoney;
+            this.data.wechar.totalAllMoney = this.data.wechar.totalAllMoney+this.data.wechar.totalMoney;
           }
           if(wecharList[i].status == 3){
             //退款
              this.data.wechar.refundMoney = wecharList[i].totalMoney;
-             this.data.wechar.totalAllMoney = this.data.wechar.totalElement+this.data.wechar.totalMoney;
+             this.data.wechar.totalAllMoney = this.data.wechar.totalAllMoney+wecharList[i].totalMoney;
           }
         }
 
@@ -105,14 +105,16 @@ query(){
           if(allList[i].status == 1){
             //支付成功
             this.data.all.totalMoney = allList[i].totalMoney;
-            this.data.all.totalAllMoney = this.data.all.totalElement+this.data.all.totalMoney;
+            this.data.all.totalAllMoney = this.data.all.totalAllMoney+this.data.all.totalMoney;
           }
           if(allList[i].status == 3){
             //退款
              this.data.all.refundMoney = allList[i].totalMoney;
-             this.data.all.totalAllMoney = this.data.all.totalElement+this.data.all.totalMoney;
+             this.data.all.totalAllMoney = this.data.all.totalAllMoney+allList[i].totalMoney;
           }
         }
+
+        console.log("交班结算详情参数,",this.data.ali);
 
         this.setData({
           "ali":this.data.ali,
@@ -150,5 +152,26 @@ settlement(){
       }
     });
   },
+
+  onUnload() {
+    // 页面被关闭
+    //初始化变量
+    console.log("页面关闭");
+    this.data.ali={
+      totalMoney: 0,
+      totalAllMoney: 0,
+      refundMoney: 0
+    },
+    this.data.wechar={
+       totalMoney: 0,
+      totalAllMoney: 0,
+      refundMoney: 0
+    },
+    this.data.all={
+       totalMoney: 0,
+      totalAllMoney: 0,
+      refundMoney: 0
+    }
+  }
 
 });

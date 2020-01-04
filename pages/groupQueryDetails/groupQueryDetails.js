@@ -42,9 +42,10 @@ Page({
             this.data.breakNum = this.data.breakNum+aliList[i].totalElement;
             this.data.refundMoney = this.data.refundMoney+aliList[i].totalMoney/100;
           }
-          this.data.totalMoney = this.data.totalMoney+this.data.officialCount;
+          
         }
         this.data.successNum = this.data.successNum+this.data.breakNum;
+        this.data.totalMoney = this.data.totalMoney+this.data.officialCount;
         this.setData({
           "successNum":this.data.successNum,
           "officialCount":this.data.officialCount,
