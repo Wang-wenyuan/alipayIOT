@@ -209,7 +209,7 @@ Page({
       if (res.success) {
         console.log("可以进行商家收账", res);
         //此代码注释掉转账可能存在错误
-        //this.data.from.sellerId = res.object.merchantsPid;
+        this.data.from.sellerId = res.object.pid;
         //启动收银台
         this.startApp(this.data.money);
       } else {

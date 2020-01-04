@@ -128,6 +128,7 @@ Page({
     my.navigateTo({ url: '../paymentOptions/paymentOptions?money=' + money });
   },
   navigateToSetting() {
+    console.log("开始跳转");
     my.navigateTo({ url: '../setting/setting' })
   },
   // 设置静音
