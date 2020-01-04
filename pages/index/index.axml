@@ -20,8 +20,11 @@
       </swiper>
     </view>
     <!--脚部-->
-    <view style="height:20.1vh">
-      <image class="buttonImage" onTap="onTap" src="{{buttonImage}}" onError="imageError" onLoad="imageLoad" />
+    <view style="height:20.1vh; background-image: url({{buttonImage}}); background-size:100%; position:relative;text-align:center; align-items: center;display:flex;">
+      <!-- <image class="buttonImage" onTap="onTap" src="{{buttonImage}}" onError="imageError" onLoad="imageLoad" /> -->
+      <span a:if="{{buttonShow == 1}}">
+        <button type="primary" onTap="handMoney" style="width:50%; position:absolute; margin:0px 100px"  >手动输入</button>
+      </span>
     </view>
   </block>
 </view>

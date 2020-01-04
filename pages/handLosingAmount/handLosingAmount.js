@@ -71,5 +71,11 @@ Page({
       "money": this.data.money
     });
     console.log("数字键盘", ev);
+  },
+  //跳转页面
+  moneyButton(){
+    my.navigateTo({
+        url: "../paymentOptions/paymentOptions?money="+this.data.money
+      });
   }
 });

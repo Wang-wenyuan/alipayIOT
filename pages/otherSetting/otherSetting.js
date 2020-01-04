@@ -338,6 +338,10 @@ Page({
   },
   //收款设置更新
   shoukuanUpdate() {
+    
+    this.data.shoukuanFrom.snNum = this.data.snValue;
+    this.data.shoukuanFrom.name = "收银模式";
+    this.data.shoukuanFrom.type = '1000';
     console.log("收款设置参数",this.data.shoukuanFrom);
     bnApi.requestUpdate(sysConfig.apiUrl + "/system/config/update/" + this.data.shoukuanFrom.id,this.data.shoukuanFrom).then((res) => {
       if (res.success) {
@@ -346,5 +350,6 @@ Page({
         console.log("收款设置保存失败",res);
       }
     });
-  }
+  },
+  
 });

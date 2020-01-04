@@ -46,7 +46,7 @@
       退款总计:
       </view>
       <view style="width:50%;text-align: right;float:right">
-      {{breakNum}}
+      {{refundMoney}}
       </view>
     </view>
   </view>

@@ -37,7 +37,7 @@ Page({
       waterNumber: '',
       status: '1',//支付状态
       outTradeNo: '',
-      waterWay:'',
+      payType:'',
       limit:100,
       page:0
     },
@@ -174,18 +174,18 @@ Page({
           //调用订单查询接口
           if(res.selectedOneIndex==1){
             //刷脸
-            then.data.from.waterWay = "F";
+            then.data.from.payType = "F";
           }
           if(res.selectedOneIndex ==2){
-            then.data.from.waterWay = "C";
+            then.data.from.payType = "C";
           }
           if(res.selectedOneIndex == 0){
-            then.data.from.waterWay="";
+            then.data.from.payType="";
           }
-          if(this.data.flag==0){
+          if(then.data.flag==0){
               then.queryOrder();
           }
-          if(this.data.flag == 2){
+          if(then.data.flag == 2){
             then.queryRefund();
           }
           

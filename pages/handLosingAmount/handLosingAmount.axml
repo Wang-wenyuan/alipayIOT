@@ -31,7 +31,7 @@
     </view>
   </view>
   <view class="button">
-    <button type="primary" onTap="">确定</button>
+    <button type="primary" onTap="moneyButton">确定</button>
   </view>
   
 </view>

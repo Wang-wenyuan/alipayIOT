@@ -38,7 +38,7 @@
         <view class="tbL">
         支付方式
         </view>
-        <view class="tbR"> {{type=='F'?"支付宝刷脸":"支付宝扫码"}}
+        <view class="tbR"> {{payType=='F'?"支付宝刷脸":"支付宝扫码"}}
         </view>
       </view>
       <view class="tr">
@@ -59,7 +59,7 @@
     北京邦华信诺电子科技有限公司
     </view>
     <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
-    -{{money}}
+    -{{money/100}}
     </view>
     <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
       <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
@@ -70,7 +70,7 @@
         退款金额
         </view>
         <view class="tbR">
-        {{items.refundFee}}
+        {{items.refundFee/100}}
         </view>
       </view>
       <view class="tr">
@@ -85,7 +85,7 @@
         <view class="tbL">
         支付方式
         </view>
-        <view class="tbR"> {{items.waterWay=='F'?"支付宝刷脸":"支付宝扫码"}}
+        <view class="tbR"> {{items.payType=='F'?"支付宝刷脸":"支付宝扫码"}}
         </view>
       </view>
       <view class="tr">

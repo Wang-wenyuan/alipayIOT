@@ -9,6 +9,7 @@ Page({
     breakNum:0,
     totalMoney:0,
     officialCount:0,
+    refundMoney:0,
     form:{
       endTime:'',
       startTime:'',
@@ -39,14 +40,17 @@ Page({
           if(aliList[i].status == 3){
             //已退款
             this.data.breakNum = this.data.breakNum+aliList[i].totalElement;
+            this.data.refundMoney = this.data.refundMoney+aliList[i].totalMoney/100;
           }
           this.data.totalMoney = this.data.totalMoney+this.data.officialCount;
         }
+        this.data.successNum = this.data.successNum+this.data.breakNum;
         this.setData({
           "successNum":this.data.successNum,
           "officialCount":this.data.officialCount,
           "breakNum":this.data.breakNum,
-          "totalMoney":this.data.totalMoney
+          "totalMoney":this.data.totalMoney,
+          "refundMoney":this.data.refundMoney
         });
       }
     });
@@ -82,5 +86,15 @@ Page({
     } else {
       return new Date();
     }
+  },
+  onUnload() {
+    // 页面被关闭
+    //初始化变量
+    console.log("页面关闭");
+    this.data.successNum = 0;
+    this.data.breakNum = 0;
+    this.data.totalMoney=0;
+    this.data.officialCount=0;
+    this.data.refundMoney = 0;
   }
 });

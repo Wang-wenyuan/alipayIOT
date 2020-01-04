@@ -141,8 +141,8 @@
   <view class="body">
     <list a:if="{{index==0}}">
       <block a:for="{{itemsThumb}}">
-        <list-item thumb="/image/orderImg.png" arrow="{{item.arrow}}" onClick="onItemClick" index="{{item.orderId}}" last="{{index === (itemsThumb.length - 1)}}" key="itemsThumb-{{index}}">
-					{{item.waterWay=='F' ? '支付宝刷脸':'支付宝扫码'}}
+        <list-item thumb="/image/orderImg.png" arrow="{{item.arrow}}" onClick="onItemClick" data-index = "{{item.id}}" index="{{item.id}}" last="{{index === (itemsThumb.length - 1)}}" key="itemsThumb-{{index}}">
+					{{item.payType=='F' ? '支付宝刷脸':'支付宝扫码'}}
           <view class="am-list-brief">订单号: {{item.outTradeNo}}</view>
           <view a:if="{{item.actualPayment}}" slot="extra">
 						{{item.actualPayment/100}}元
@@ -163,11 +163,11 @@
     </list>
     <list a:if="{{index==2}}">
       <block a:for="{{itemsThumb2}}">
-        <list-item thumb="/image/orderImg.png" arrow="{{item.arrow}}" data-index = "{{item.refundId}}" onClick="onItemClick2" index="{{item.orderId}}" last="{{index === (itemsThumb.length - 1)}}" key="itemsThumb-{{index}}">
-					{{item.waterWay=='F' ? '支付宝刷脸':'支付宝扫码'}}
+        <list-item thumb="/image/orderImg.png" arrow="{{item.arrow}}" data-index = "{{item.id}}" onClick="onItemClick2" index="{{item.orderId}}" last="{{index === (itemsThumb.length - 1)}}" key="itemsThumb-{{index}}">
+					{{item.payType=='F' ? '支付宝刷脸':'支付宝扫码'}}
           <view class="am-list-brief">订单号: {{item.outTradeNo}}</view>
           <view a:if="{{item.refundFee}}" slot="extra">
-						{{item.refundFee}}元
+						{{item.refundFee/100}}元
           </view>
         </list-item>
       </block>

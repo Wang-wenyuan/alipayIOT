@@ -146,25 +146,25 @@ Page({
   },
   //订单查询
   queryOrder() {
-    bnApi.requestGet(sysConfig.apiUrl + "/api/water/findById/" + this.data.orderId).then((res) => {
+    bnApi.requestGet(sysConfig.apiUrl + "/order/findById/" + this.data.orderId).then((res) => {
       if (res.success) {
         console.log("订单查询成功", res);
-        this.data.money = res.object.waterMoney;
-        this.data.waterMoney = res.object.waterMoney;
-        this.data.waterSMoney = res.object.waterSMoney;
-        this.data.type = res.object.waterWay;
-        this.data.outOrderId = res.object.waterWater;
-        this.data.waterEndTime = this.dateFormat(res.object.waterEndTime);
-        this.data.from.tradeNo = res.object.waterNumber;
-        this.data.from.refundAmount =res.object.waterMoney;
+        this.data.money = res.object.actualPayment/100;
+        this.data.waterMoney = res.object.actualPayment/100;
+        this.data.waterSMoney = res.object.consumeMoney;
+        this.data.payType = res.object.payType;
+        this.data.outOrderId = res.object.outTradeNo;
+        this.data.waterEndTime = this.dateFormat(res.object.createTime);
+        this.data.from.tradeNo = res.object.serialNumber;
+        this.data.from.refundAmount =this.data.money;
         this.data.waterState = res.object.waterState;
-        this.data.from.snNum = res.object.snNum;
+        this.data.from.snNum = res.object.sn;
         this.setData({
-          "money":res.object.waterMoney,
-          "waterMoney":res.object.waterMoney,
-          "waterSMoney":res.object.waterSMoney,
-          "type":res.object.waterWay,
-          "outOrderId":res.object.waterWater,
+          "money":this.data.waterMoney,
+          "waterMoney":this.data.waterMoney,
+          "waterSMoney":this.data.waterMoney,
+          "payType":this.data.payType,
+          "outOrderId":this.data.outOrderId,
           "waterEndTime":this.data.waterEndTime,
           "waterState":this.data.waterState,
           "type":"pay"
