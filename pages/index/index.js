@@ -9,8 +9,8 @@ Page({
     posid: 'idle_pos',                           // 海报位置id，目前固定传入idle_pos
     audible: false,                               // 海报（视频类）是否有声音
     show_default_poster: true,                 // 是否展示本地兜底海报
-    background: ['/image/lunbo.jpg', '/image/lunbo.jpg', '/image/lunbo.jpg'],
-    buttonImage: "/image/buttonImg.jpg",
+    background: ['/image/lunbo1.png', '/image/lunbo2.png', '/image/lunbo3.png'],
+    buttonImage: "/image/button.png",
     indicatorDots: true,
     autoplay: true,
     vertical: false,
