@@ -425,7 +425,7 @@ Page({
     let model = JSON.stringify(JSON.stringify(this.data.model));
     this.data.from.model = model.substr(1, model.length - 1);
     //调用保存
-    bnApi.requestPost(sysConfig.apiUrl + "/system/config/update/1", this.data.from).then((res) => {
+    bnApi.requestPost(sysConfig.apiUrl + "/system/config/update/"+this.data.from.id, this.data.from).then((res) => {
       if (res.success) {
         console.log("保存成功", res);
 

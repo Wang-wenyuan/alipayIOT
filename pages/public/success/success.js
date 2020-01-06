@@ -9,7 +9,7 @@ Page({
     }
   },
   goBack() {
-    my.navigateTo({
+    my.reLaunch({
       url: '../../index/index'
     });
   }
