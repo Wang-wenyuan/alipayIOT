@@ -6,7 +6,7 @@
     <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
     +{{money}}
     </view>
-    <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
+    <view onTap="printModelShow" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
       <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
     </view>
     <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
@@ -61,7 +61,7 @@
     <view style="width:80%;margin:0 auto;font-size:25px;height:20px;text-align: center;">
     -{{money/100}}
     </view>
-    <view onTap="print" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
+    <view onTap="printModelShow" style="width:80%;margin:10px auto 10px auto;font-size:15px;height:15px;text-align: center;">
       <image mode="scaleToFill" src="/image/print.png" style="width:15px;height:15px;color:#1296DB"/>重新打印
     </view>
     <view style="width:80%;margin:0 auto;font-size:15px;height:75%">
@@ -98,4 +98,16 @@
       </view>
     </view>
   </span>
+  <!--弹出框-->
+  <modal
+		show="{{modalOpened}}"
+		onModalClick="onModalClick"
+		onModalClose="onModalClose"
+	>
+    <view style="height:30px"> </view>
+		<button size="default" onTap="printButton" data-type="1" type="primary">打印商户联</button>
+    <view style="height:20px"> </view>
+		<button size="default" onTap="printButton" data-type="2" type="primary">打印顾客联</button>
+    <view style="height:20px"> </view>
+	</modal>
 </view>

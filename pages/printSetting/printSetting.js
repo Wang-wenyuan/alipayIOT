@@ -287,10 +287,11 @@ Page({
         this.data.from.name = res.object.name;
         this.data.from.type = res.object.type;
         let itemsreceipt = this.data.itemsReceipt;
-        for (let i = 0; i < itemsreceipt.length; i++) {
-          if (itemsreceipt[i].name == jsonModel.orderIdPrint) {
-            itemsreceipt[i].checked = true;
-            this.data.items4[1].extra = itemsreceipt[i].value;
+        //debugger;
+        for (let j = 0; j < itemsreceipt.length; j++) {
+          if (itemsreceipt[j].name == jsonModel.orderIdPrint) {
+            itemsreceipt[j].checked = true;
+            this.data.items4[1].extra = itemsreceipt[j].value;
           }
 
 
@@ -423,7 +424,8 @@ Page({
     console.log("页面被关闭");
     //model进行转换
     let model = JSON.stringify(JSON.stringify(this.data.model));
-    this.data.from.model = model.substr(1, model.length - 1);
+    this.data.from.model = model.substr(1, (model.length)-2);
+    console.log("保存参数",this.data.from.model);
     //调用保存
     bnApi.requestPost(sysConfig.apiUrl + "/system/config/update/"+this.data.from.id, this.data.from).then((res) => {
       if (res.success) {

@@ -1,4 +1,5 @@
 import { Page } from '/util/ix';
+import utils from '/util/utils';
 import bnApi from '/config/public';
 let sysConfig = require('/config/sysConfig')
 Page({
@@ -15,7 +16,9 @@ Page({
       totalAmount: '',
       waterNote: ''
     },
-    modalOpened21:false
+    modalOpened21:false,
+    outOrderId:'',
+    payType:''
   },
   onLoad(query) {
     console.log("paymentOptions页面参数", query);
@@ -128,9 +131,11 @@ Page({
           if (r.codeType == "F") {
             //刷脸
             console.log("刷脸操作");
+            this.data.payType = '支付宝刷脸支付';
           } else if (r.codeType == "C") {
             //扫码
             console.log("扫码操作");
+            this.data.payType = '支付宝扫码支付';
           }
         }
       }
@@ -143,6 +148,8 @@ Page({
     bnApi.requestPost(sysConfig.apiUrl + "/api/pay", this.data.from).then((res) => {
       if (res.success) {
         console.log("支付成功");
+        this.data.outOrderId = res.object.outOrderId;
+        this.print();
         //获取支付结果
         this.payResult(this.data.orderId, this.data.money, 0, 0);
       } else {
@@ -160,7 +167,7 @@ Page({
       bizAmount: bizAmount,
       discount: discount,
       success: (r) => {
-        my.showToast({ content: JSON.stringify(r) });
+        //my.showToast({ content: JSON.stringify(r) });
         console.log("支付结果获取");
       }
     });
@@ -232,4 +239,133 @@ Page({
       "modalOpened21": false
     });
   },
+  //打印
+  print() {
+    console.log("打印进入");
+    let printTime = utils.format(new Date(), "yyyy-MM-dd hh:ss");
+    let cmdss = [];
+    let cmds = [{ 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'ON', 'ON', 'ON'] },
+    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
+    { 'cmd': 'addText', 'args': ['支付宝'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //商户联
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['商户联'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //商户
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['商户：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': ['北京邦华信诺电子科技有限公司'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //门店
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['门店：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': ['北京邦华信诺电子科技有限公司'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //收款终端
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['收款终端：蜻蜓'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //单号
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['单号：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [this.data.outOrderId] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //订单码
+    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] }, /*设置打印居中对齐*/
+    { 'cmd': 'addStoreQRCodeDataGB18030', 'args': [this.data.outOrderId] }, /*设置qrcode内容*/
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //下单时间
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['下单时间：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [printTime] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //状态
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['状态：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': ['支付成功'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //总金额
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['总金额：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [this.data.money] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //实收金额
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['实收金额：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [this.data.money] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //支付方式：
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['支付方式：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [this.data.payType] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //支付时间
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['支付时间：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [printTime] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //打印时间
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
+    { 'cmd': 'addTurnDoubleStrikeOnOrOff', 'args': ['OFF'] },
+    { 'cmd': 'addText', 'args': ['打印时间：'] },
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': [printTime] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+    //分割线
+    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
+    { 'cmd': 'addText', 'args': ['----------------'] },
+    { 'cmd': 'addPrintAndLineFeed', 'args': [] }
+    ];
+    let cmds1 = JSON.parse(JSON.stringify(cmds));
+    //顾客联
+    cmds1[7].args = ['顾客联']
+    cmds.push( { 'cmd': 'addPrintAndLineFeed', 'args': [] });
+    cmds.push( { 'cmd': 'addPrintAndLineFeed', 'args': [] });
+    cmds.push( { 'cmd': 'addPrintAndLineFeed', 'args': [] });
+    for(let g=0;g<cmds1.length;g++){
+      cmds.push(cmds1[g]);
+    }
+    my.ix.printer({
+      cmds: cmds,
+      success: (r) => {
+        console.log("success");
+      },
+      fail: (r) => {
+        //console.log("fail, errorCode:" + r.error);
+      }
+    });
+  }
 });

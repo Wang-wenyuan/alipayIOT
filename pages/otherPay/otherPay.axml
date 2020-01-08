@@ -9,7 +9,7 @@
   </view>
   <view class="footer">
     <button  class="button" onTap="aliButton"><image class="iocImage" src="../../image/ali.png"/>支付宝</button>
-    <button  class="button" onTap="wecharButton"><image class="iocImage" src="../../image/wechar.png"/>微信</button>
+    <!-- <button  class="button" onTap="wecharButton"><image class="iocImage" src="../../image/wechar.png"/>微信</button> -->
     <!-- <button type="ghost">银联</button> -->
   </view>
 </view>

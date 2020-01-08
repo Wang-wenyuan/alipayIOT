@@ -148,6 +148,7 @@ Page({
           console.log("订单查询", res);
           if (res.success) {
             //支付成功
+            clearInterval(this.data.timer);
             this.setData({
               "show1": false,
               "show3": false,
