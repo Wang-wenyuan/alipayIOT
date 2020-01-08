@@ -9,7 +9,8 @@
   </view>
   <view class="footer">
     <button class="facePay" type="primary" onTap="facePayClick">刷脸扫码支付</button>
-    <button class="faceCash" type="primary" onTap="faceCashClick">刷脸付押金</button>
+    <button class="facePay" type="primary" onTap="otherPayClick">其他支付</button>
+    <!-- <button  class="faceCash" type="primary" onTap="faceCashClick">刷脸付押金</button> -->
   </view>
   <!--不能进行扫脸支付-->
   <modal

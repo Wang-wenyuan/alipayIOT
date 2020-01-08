@@ -171,19 +171,19 @@ Page({
       if (r.bizType === 'RESULT_CLOSED') {
         console.log("收银台关闭");
         //跳转到首页
-        my.navigateTo({ url: '../index/index' });
+        my.reLaunch({ url: '../index/index' });
         my.ix.offCashierEventReceive();
       } else if (r.bizType === 'RESULT_BTN_FUNCTION') {
         console.log("收银台自定义按钮按下");
         console.log("收银台关闭");
         //跳转到首页
-        my.navigateTo({ url: '../index/index' });
+        my.reLaunch({ url: '../index/index' });
         my.ix.offCashierEventReceive();
       } else {
         console.log('RESULT: ', r.keyCode);
         console.log("收银台关闭");
         //跳转到首页
-        my.navigateTo({ url: '../index/index' });
+        my.reLaunch({ url: '../index/index' });
         my.ix.offCashierEventReceive();
       }
 
@@ -202,6 +202,10 @@ Page({
         this.data.snValue = r.value;
       }
     });
+  },
+  //其他支付
+  otherPayClick(){
+    my.navigateTo({ url: '../otherPay/otherPay?money=' + this.data.money });
   },
   //判断设备是否绑定，是否授权
   existsSnBind() {

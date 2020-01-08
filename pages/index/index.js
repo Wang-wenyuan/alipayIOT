@@ -18,8 +18,8 @@ Page({
     duration: 500,//滑动动画时间
     circular: true,//无限滑动
     randomLen: 5,
-    snValue:'',
-    buttonShow:0,
+    snValue: '',
+    buttonShow: 0,
   },
 
   // 展示成功回调 
@@ -168,7 +168,9 @@ Page({
     //https://localhost:2602/agent/agentSelect.do
 
     this.getSnValue();
-   
+
+  
+
   },
   onReady() {
     // 页面加载完成
@@ -204,27 +206,27 @@ Page({
   },
 
   //查询设置
-  querySetting(){
-    bnApi.requestGet(sysConfig.apiUrl+"/system/config/findByType/"+1000+"/"+this.data.snValue).then((res)=>{
-      console.log("配置查询",res);
-      if(res.success){
+  querySetting() {
+    bnApi.requestGet(sysConfig.apiUrl + "/system/config/findByType/" + 1000 + "/" + this.data.snValue).then((res) => {
+      console.log("配置查询", res);
+      if (res.success) {
         let model = res.object.model;
-        for(let i=0;i<10;i++){
-          model = model.replace("\\","");
+        for (let i = 0; i < 10; i++) {
+          model = model.replace("\\", "");
         }
         let modelJson = JSON.parse(model);
-        if(modelJson.name == '0'){
+        if (modelJson.name == '0') {
           //使用一体化键盘
           this.data.buttonShow = 0;
-        }else{
+        } else {
           //不使用
           this.data.buttonShow = 1;
         }
         this.setData({
-          "buttonShow":this.data.buttonShow
+          "buttonShow": this.data.buttonShow
         });
       }
-    });  
+    });
   },
   //获取sn号
   getSnValue() {
@@ -239,10 +241,10 @@ Page({
     });
   },
 
-  handMoney(){
+  handMoney() {
     //跳转页面
-     my.navigateTo({
-        url: "../handLosingAmount/handLosingAmount"
-      });
+    my.navigateTo({
+      url: "../handLosingAmount/handLosingAmount"
+    });
   }
 });

@@ -17,7 +17,9 @@
     "pages/billingInfo/billingInfo",
     "pages/billingInfoDetails/billingInfoDetails",
     "pages/closeAccount/closeAccount",
-    "pages/public/success/success"
+    "pages/public/success/success",
+    "pages/otherPay/otherPay",
+    "pages/qrCode/qrCode"
   ],
   "window": {
     "defaultTitle": "My App",

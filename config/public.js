@@ -23,6 +23,7 @@ export default {
         method: 'POST',
         dataType: 'json',
         data:params,
+        timeout:70000,
         success: function (res) {
           resolve(res.data)
         },
@@ -41,6 +42,7 @@ export default {
         method: 'POST',
         dataType: 'json',
         data:params,
+        timeout:60000,
         success: function (res) {
           resolve(res.data)
         },

@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="body">
+    <view class="bodyName">
+      <span>付款金额</span>
+    </view>
+    <view class="bodyMoney">
+      <span>￥{{money}}</span>
+    </view>
+  </view>
+  <view class="qrView">
+    <view class="wecharView">
+    请使用微信扫二维码付款
+    </view>
+    <view class="timeView">
+      (支付剩余时间:{{count}}s)
+    </view>
+    <view style="width:220px; height:230px; margin:0 auto">
+      <view style="background-image: url({{qrcode}});width:220px;height:220px;margin-top:10px;background-repeat:no-repeat;">
+        <image a:if="{{show1}}" mode="scaleToFill" src="../../image/loadingPay.png" style="width:220px;height:220px;margin-top:10px;background-color:white"/>
+        <image a:if="{{show2}}" mode="scaleToFill" src="../../image/success.png" style="width:220px;height:220px;margin-top:10px;background-color:white"/>
+        <image a:if="{{show3}}" mode="scaleToFill" src="../../image/timeout.png" style="width:220px;height:220px;margin-top:10px;background-color:white"/>
+      </view>
+      <!-- <image src="{{qrcode}}" mode="widthFix" style="width:220px;height:220px;margin-top:10px"/> -->
+    </view>
+    
+  </view>
+</view>
