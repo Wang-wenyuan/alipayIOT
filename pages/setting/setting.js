@@ -27,7 +27,7 @@ Page({
         text: '设置',
       }
     ],
-    modalOpened:false
+    modalOpened: false
   },
   onLoad() { },
   //回调函数
@@ -58,53 +58,61 @@ Page({
     this.data.index = ev.detail.index;
     switch (ev.detail.index) {
       case 0:
-      this.data.modalOpened = true;
-      this.setData({
-        "modalOpened":true
-      });
+        this.data.modalOpened = true;
+        this.setData({
+          "modalOpened": true
+        });
         break;
       case 2:
-      //汇总查询
-      my.navigateTo({
-        url: '../groupQuery/groupQuery'
-      });
+        //汇总查询
+        my.navigateTo({
+          url: '../groupQuery/groupQuery'
+        });
         break;
       case 3:
-      //进入订单流水
-      my.navigateTo({
-        url: '../orderPage/orderPage'
-      });
+        //进入订单流水
+        my.navigateTo({
+          url: '../orderPage/orderPage'
+        });
         break;
       case 5:
         //进入自定义设置页面
         my.navigateTo({
-        url: '../otherSetting/otherSetting'
-      });
+          url: '../otherSetting/otherSetting'
+        });
         break;
     }
   },
   //开始交班
-  startJiaoBan(){
-     this.setData({
-        "modalOpened":false
-      });
+  startJiaoBan() {
+    this.setData({
+      "modalOpened": false
+    });
     my.navigateTo({
-      url:"../successionAndSettlement/successionAndSettlement"
+      url: "../successionAndSettlement/successionAndSettlement"
     });
   },
   //查看记录
-  lookJieSuan(){
-     this.setData({
-        "modalOpened":false
-      });
+  lookJieSuan() {
+    this.setData({
+      "modalOpened": false
+    });
     my.navigateTo({
-      url:"../billingInfo/billingInfo"
+      url: "../billingInfo/billingInfo"
     });
   },
-  onModalClick21(){
+  onModalClick21() {
     this.setData({
-        "modalOpened":false
-      });
+      "modalOpened": false
+    });
+  },
+  //页面关闭
+  onUnload() {
+    console.log("页面关闭");
+    this.setData({
+      "modalOpened": false
+    });
+    this.data.modalOpened = false;
   }
 
 });
