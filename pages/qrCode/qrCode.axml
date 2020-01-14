@@ -9,7 +9,7 @@
   </view>
   <view class="qrView">
     <view class="wecharView">
-    请使用微信扫二维码付款
+    请使用支付宝扫二维码付款
     </view>
     <view class="timeView">
       (支付剩余时间:{{count}}s)
