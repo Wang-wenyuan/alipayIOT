@@ -156,9 +156,9 @@ Page({
             });
             this.sleep(2000);
             //跳转到首页
-            my.redirectTo({
+            my.reLaunch({
               url: '../index/index'
-            });
+            })
           }
         });
       } else {
@@ -168,9 +168,9 @@ Page({
         });
         this.sleep(2000);
         //跳转到首页
-        my.redirectTo({
+        my.reLaunch({
           url: '../index/index'
-        });
+        })
       }
     });
   },

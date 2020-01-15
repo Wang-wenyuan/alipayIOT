@@ -29,7 +29,12 @@ Page({
     ],
     modalOpened: false
   },
-  onLoad() { },
+  onLoad() { 
+    this.setData({
+          "modalOpened": false
+        });
+        this.data.modalOpened = false;
+  },
   //回调函数
   onKeyPress(r) {
     console.log("键盘回调函数");
@@ -43,7 +48,13 @@ Page({
       case 133:
         r.keyName = '取消';
         //返回上一级
-        my.navigateBack();
+        this.setData({
+          "modalOpened": false
+        });
+        this.data.modalOpened = false;
+        my.reLaunch({
+          url: '../index/index'
+        });
         break;
       case 134:
         r.keyName = '设置';

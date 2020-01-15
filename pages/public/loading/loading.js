@@ -48,7 +48,7 @@ Page({
   },
     //跳转到首页
   navigateToIndex(){
-    my.navigateTo({url:'../../index/index'});
+    my.reLaunch({url:'../../index/index'});
   },
 
 

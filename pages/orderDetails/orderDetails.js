@@ -53,7 +53,9 @@ Page({
         break;
       case 133:
         r.keyName = '取消';
-        my.navigateBack();
+        my.redirectTo({
+          url: '../orderPage/orderPage' 
+        })
         break;
       case 134:
         r.keyName = '设置';
